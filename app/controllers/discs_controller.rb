@@ -1,74 +1,49 @@
 class DiscsController < ApplicationController
-  before_action :set_disc, only: [:show, :edit, :update, :destroy]
-
-  # GET /discs
-  # GET /discs.json
   def index
     @discs = Disc.all
   end
 
-  # GET /discs/1
-  # GET /discs/1.json
   def show
+    @disc = Disc.find(params[:id])
   end
 
-  # GET /discs/new
   def new
     @disc = Disc.new
   end
 
-  # GET /discs/1/edit
   def edit
+    @disc = Disc.find(params[:id])
   end
 
-  # POST /discs
-  # POST /discs.json
   def create
     @disc = Disc.new(disc_params)
 
-    respond_to do |format|
       if @disc.save
-        format.html { redirect_to @disc, notice: 'Disc was successfully created.' }
-        format.json { render :show, status: :created, location: @disc }
+        redirect_to discs_path
       else
-        format.html { render :new }
-        format.json { render json: @disc.errors, status: :unprocessable_entity }
+        flash[:errors] = @disc.errors.full_messages
+        render action: "new"
       end
-    end
   end
 
-  # PATCH/PUT /discs/1
-  # PATCH/PUT /discs/1.json
   def update
-    respond_to do |format|
-      if @disc.update(disc_params)
-        format.html { redirect_to @disc, notice: 'Disc was successfully updated.' }
-        format.json { render :show, status: :ok, location: @disc }
-      else
-        format.html { render :edit }
-        format.json { render json: @disc.errors, status: :unprocessable_entity }
-      end
+    @disc = Disc.find(params[:id])
+
+    if @disc.update_attributes(disc_params)
+      redirect_to action: "show", id: @disc
+    else
+      render action: "edit"
     end
   end
 
-  # DELETE /discs/1
-  # DELETE /discs/1.json
   def destroy
+    @disc = Disc.find(params[:id])
     @disc.destroy
-    respond_to do |format|
-      format.html { redirect_to discs_url, notice: 'Disc was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to action: "index"
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_disc
-      @disc = Disc.find(params[:id])
-    end
+  def disc_params
+    params.require(:disc).permit(:model, :brand, :color, :plastic_type, :weight, :condition, :speed, :glide, :turn, :fade, :description, :nickname, :user_id)
+  end
 
-    # Only allow a list of trusted parameters through.
-    def disc_params
-      params.fetch(:disc, {})
-    end
 end

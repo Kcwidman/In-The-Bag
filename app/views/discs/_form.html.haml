@@ -1,0 +1,52 @@
+= form_with(model: disc, local: true) do |form|
+  - if disc.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(disc.errors.count, "error")
+        prohibited this disc from being saved:
+      %ul
+        - disc.errors.full_messages.each do |message|
+          %li= message
+  .row.my-2
+    .col-4
+      .form-group
+        = form.text_field :plastic_type, :class => "form-control", :placeholder => "plastic type"
+    .col-4
+      .form-group
+        = form.text_field :model, :class => "form-control", :placeholder => "model"
+    .col-4
+      .form-group
+        = form.text_field :brand, :class => "form-control", :placeholder => "brand"
+  .row.my-2
+    .col-2
+      .form-group
+        = form.text_field :speed, :class => "form-control", :placeholder => "speed"
+    .col-2
+      .form-group
+        = form.text_field :glide, :class => "form-control", :placeholder => "glide"
+    .col-2
+      .form-group
+        = form.text_field :turn, :class => "form-control", :placeholder => "turn"
+    .col-2
+      .form-group
+        = form.text_field :fade, :class => "form-control", :placeholder => "fade"
+    .col-4
+      .form-group
+        = form.text_field :color, :class => "form-control", :placeholder => "color"
+  .row.my-2
+    .col-4
+      .form-group
+        = form.text_field :weight, :class => "form-control", :placeholder => "weight"
+    .col-4
+      .form-group
+        = form.text_field :condition, :class => "form-control", :placeholder => "condition (scale: 1-10)"
+    .col-4
+      .form-group
+        = form.text_field :nickname, :class => "form-control", :placeholder => "nickname"
+  .row.my-2
+    .col-8
+      %p Description: 
+      .form-group
+        = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
+    .col-4    
+      .m-5= form.submit :Finish, :class => "btn btn-lg btn-success"

@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title InTheBag
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .container
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.text-white
+        .navbar-brand 
+          = link_to "In The Bag", root_path, :class => "navbar text-light"
+
+        #navbarSupportedContent.collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.nav-item.m-3
+              =link_to "My Collection", bags_path, :class => "navbar text-light"
+            %li.nav-item.m-3
+              Users
+            %li.nav-item.m-3
+              Trading
+            %li.nav-item.m-3
+              Messages
+            %li.nav-item.m-3
+              Account
+            %li.nav-item.m-3
+              Logout
+      .text-danger.text-center
+        - flash.each do |name, msg|
+          %strong= content_tag :div, msg, class: name
+      = yield
