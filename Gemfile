@@ -26,6 +26,9 @@ gem "pg"
 # used in place of ERB files
 gem "haml"
 
+# secures user accounts
+gem 'devise'
+
 
 
 # Use Active Storage variant

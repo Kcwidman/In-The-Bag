@@ -1,12 +1,4 @@
 = form_with(model: disc, local: true) do |form|
-  - if disc.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(disc.errors.count, "error")
-        prohibited this disc from being saved:
-      %ul
-        - disc.errors.full_messages.each do |message|
-          %li= message
   .row.my-2
     .col-4
       .form-group

@@ -1,6 +1,6 @@
 class DiscsController < ApplicationController
   def index
-    @discs = Disc.all
+    @discs = current_user.discs
   end
 
   def show
@@ -16,14 +16,14 @@ class DiscsController < ApplicationController
   end
 
   def create
-    @disc = Disc.new(disc_params)
+    @disc = current_user.discs.new(disc_params)
 
-      if @disc.save
-        redirect_to discs_path
-      else
-        flash[:errors] = @disc.errors.full_messages
-        render action: "new"
-      end
+    if @disc.save
+      redirect_to discs_path
+    else
+      flash[:errors] = @disc.errors.full_messages
+      render action: "new"
+    end
   end
 
   def update
