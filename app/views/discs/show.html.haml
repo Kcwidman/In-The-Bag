@@ -1,4 +1,8 @@
-%p#notice= notice
+
+= @disc.plastic_type
+= @disc.model
+-if @disc.picture.attached?
+  =image_tag(@disc.picture, size: "600x600")
+%br
 = link_to 'Edit', edit_disc_path(@disc)
-|
 = link_to 'Back', discs_path
