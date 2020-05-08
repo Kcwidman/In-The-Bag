@@ -1,8 +1,57 @@
+.container
+  .row
+    .col-6
+      .row.my-5.ml-3
+        .card
+          -if @disc.nickname.present?
+            .card-header.text-center
+              =@disc.nickname
+          .card-image-top.text-center
+            -if @disc.picture.attached?
+              =image_tag(@disc.picture, size: "300x300")
+            -else
+              =image_tag("blank_disc.jpg", size: "300x300")
+          .card-body
+            .card-title.text-center
+              =@disc.plastic_type
+              =@disc.model
+              ,
+              =@disc.brand
+          %ul.list-group.list-group-flush
+            %li.list-group-item.text-center
+              =@disc.speed
+              \/
+              =@disc.glide
+              \/
+              =@disc.turn
+              \/
+              =@disc.fade
 
-= @disc.plastic_type
-= @disc.model
--if @disc.picture.attached?
-  =image_tag(@disc.picture, size: "600x600")
-%br
-= link_to 'Edit', edit_disc_path(@disc)
-= link_to 'Back', discs_path
+            %li.list-group-item
+              condition:
+              =@disc.condition
+            %li.list-group-item
+              weight:
+              =@disc.weight
+            %li.list-group-item
+              color:
+              =@disc.color
+          .card-body
+            .card-text
+              description:
+              %br
+              =@disc.description
+
+
+    .col-6
+      = link_to 'Edit', edit_disc_path(@disc)
+      = link_to 'Back', discs_path
+
+
+-#   = @disc.plastic_type
+-#   = @disc.model
+-# .row
+-#   -if @disc.picture.attached?
+-#     =image_tag(@disc.picture, size: "300x300")
+-#   -else
+-#     =image_tag("blank_disc.jpg", size: "300x300")
