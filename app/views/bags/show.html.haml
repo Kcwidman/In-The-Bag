@@ -1,10 +1,12 @@
-.row.mt-3
-  .col-5
-    %h1 My Discs
-  .col-2.my-auto
-    = link_to 'New Disc', new_disc_path, :class => "btn btn-lg btn-success"
+.row.mt-4
+  .col-4
+  .col-3.text-center
+    %h1=@bag.name
+    =image_tag('default_bag.png', size: "300x300")
+  .col
+    =link_to "Edit bag", edit_bag_path(@bag)
 .row
-  - @discs.each do |disc|
+  - @bag.discs.each do |disc|
     .col-3.my-3
       .card
         .card-image-top.text-center

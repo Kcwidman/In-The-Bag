@@ -1,0 +1,23 @@
+= form_for @bag do |form|
+  .row
+    .col-4.text-center.my-5
+      %h1 New Bag
+      =image_tag('default_bag.png', size: "300x300")
+    .col-8
+      .row.my-5
+      .row.my-5
+      .row.my-5
+      .row.my-5
+        .row.my-2.ml-3
+          %h3 Give it a name: 
+          .form-group.ml-3
+            =form.text_field :name, :class => "form-control"
+        .row.my-2.ml-3
+          %h3 How many discs does it hold: 
+          .form-group.ml-3
+            =form.text_field :capacity, :class => "form-control"
+  .row.my-5
+  .row.text-center
+    = link_to "Cancel", bags_path, :class => "btn btn-lg btn-danger mx-auto"
+    = form.submit "Add some discs", :class => "btn btn-lg btn-success mx-auto", :name => "bag_edit"
+    = form.submit "Finish bag", :class => "btn btn-lg btn-success mx-auto"

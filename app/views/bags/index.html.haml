@@ -1,0 +1,13 @@
+.row.mt-3
+  .col-5
+    %h1 My Bags
+  .col-2.my-auto
+    = link_to 'Create Bag', new_bag_path, :class => "btn btn-lg btn-success"
+.row
+  - @bags.each do |bag|
+    .col-3.my-3
+      .card
+        .card-header
+          =bag.name
+        .card-image-top.text-center
+          = link_to image_tag('default_bag.png', size: "250x250"), bag_path(bag)

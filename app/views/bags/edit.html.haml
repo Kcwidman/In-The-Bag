@@ -1,0 +1,18 @@
+= form_for @bag do |form|
+  .row.mt-4
+    .col-4
+    .col-3
+      =form.text_field :name, :class => "form-control"
+      =image_tag('default_bag.png', size: "300x300")
+    .col-1
+      =form.text_field :capacity, :class => "form-control"
+    .col-2.mt-5
+      =link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger"
+  .row.mt-4
+    =form.fields_for :slots do |slot_form|
+      .col-2
+        .form-group
+          = slot_form.collection_select :disc_id, current_user.discs, :id, :model, include_blank: "Select a disc"
+        .form-group
+          = slot_form.text_field :position, :placeholder => "Position"
+  = form.submit :Save, :class => "btn btn-primary"

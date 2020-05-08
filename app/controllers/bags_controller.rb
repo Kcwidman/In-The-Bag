@@ -1,74 +1,61 @@
 class BagsController < ApplicationController
-  before_action :set_bag, only: [:show, :edit, :update, :destroy]
-
-  # GET /bags
-  # GET /bags.json
   def index
-    @bags = Bag.all
+    @bags = current_user.bags
   end
 
-  # GET /bags/1
-  # GET /bags/1.json
   def show
+    @bag = Bag.find(params[:id])
+
+    #Attempting to order discs based on position
+    # slots = @bag.slots
+    # slots.sort_by { |obj| obj.position}
+    # @discs = slots.disc
   end
 
-  # GET /bags/new
   def new
     @bag = Bag.new
   end
 
-  # GET /bags/1/edit
   def edit
+    @bag = Bag.find(params[:id])
+    #Number of slots left
+    ( @bag.capacity - Slot.where("bag_id = ?", @bag.id).count ).times { @bag.slots.build }
   end
 
-  # POST /bags
-  # POST /bags.json
   def create
-    @bag = Bag.new(bag_params)
+    @bag = current_user.bags.new(bag_params)
 
-    respond_to do |format|
-      if @bag.save
-        format.html { redirect_to @bag, notice: 'Bag was successfully created.' }
-        format.json { render :show, status: :created, location: @bag }
+    if @bag.save
+      #For "Add some discs" button
+      if params['bag_edit']
+        redirect_to edit_bag_path(@bag)
       else
-        format.html { render :new }
-        format.json { render json: @bag.errors, status: :unprocessable_entity }
+        redirect_to bags_path
       end
+    else
+      flash[:errors] = @bag.errors.full_messages
+      render action: "new"
     end
   end
 
-  # PATCH/PUT /bags/1
-  # PATCH/PUT /bags/1.json
   def update
-    respond_to do |format|
-      if @bag.update(bag_params)
-        format.html { redirect_to @bag, notice: 'Bag was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bag }
-      else
-        format.html { render :edit }
-        format.json { render json: @bag.errors, status: :unprocessable_entity }
-      end
+    @bag = Bag.find(params[:id])
+
+    if @bag.update_attributes(bag_params)
+      redirect_to action: "show", id: @bag
+    else
+      render action: "edit"
     end
   end
 
-  # DELETE /bags/1
-  # DELETE /bags/1.json
   def destroy
+    @bag = Bag.find(params[:id])
     @bag.destroy
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to action: "index"
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bag
-      @bag = Bag.find(params[:id])
-    end
+  def bag_params
+    params.require(:bag).permit(:name, :capacity, :user_id, slots_attributes: [:disc_id, :id, :position])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def bag_params
-      params.fetch(:bag, {})
-    end
 end
