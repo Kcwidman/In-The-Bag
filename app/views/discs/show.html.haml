@@ -1,31 +1,42 @@
 .container
   .row
     .col-6
-      .row.my-5.ml-3
+      .my-5.ml-3
         .card
           -if @disc.nickname.present?
             .card-header.text-center
               =@disc.nickname
           .card-image-top.text-center
             -if @disc.picture.attached?
-              =image_tag(@disc.picture, size: "300x300")
+              =image_tag(@disc.picture, size: "320x320")
             -else
-              =image_tag("blank_disc.jpg", size: "300x300")
+              =image_tag('blank_disc.jpg', size: "320x320")
           .card-body
             .card-title.text-center
               =@disc.plastic_type
-              =@disc.model
-              ,
+              = "#{@disc.model},"
               =@disc.brand
           %ul.list-group.list-group-flush
             %li.list-group-item.text-center
-              =@disc.speed
+              -if @disc.speed
+                =@disc.speed
+              -else
+                X
               \/
-              =@disc.glide
+              -if @disc.glide
+                =@disc.glide
+              -else
+                X
               \/
-              =@disc.turn
+              -if @disc.turn
+                =@disc.turn
+              -else
+                X
               \/
-              =@disc.fade
+              -if @disc.fade
+                =@disc.fade
+              -else
+                X
 
             %li.list-group-item
               condition:
@@ -44,14 +55,13 @@
 
 
     .col-6
-      = link_to 'Edit', edit_disc_path(@disc)
-      = link_to 'Back', discs_path
-
-
--#   = @disc.plastic_type
--#   = @disc.model
--# .row
--#   -if @disc.picture.attached?
--#     =image_tag(@disc.picture, size: "300x300")
--#   -else
--#     =image_tag("blank_disc.jpg", size: "300x300")
+      .my-5.ml-3
+        .card
+          .card.card-header.text-center
+            Flight Chart
+          .card-image-top.text-center
+            =image_tag('default_flight_chart.png')
+        .row.my-5
+          = link_to 'Back', discs_path, :class => "btn btn-lg btn-success mx-auto"
+          = link_to 'Edit disc', edit_disc_path(@disc), :class => "btn btn-lg btn-success mx-auto"
+          = link_to 'Delete disc', disc_path(@disc), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger mx-auto"

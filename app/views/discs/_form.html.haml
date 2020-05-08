@@ -1,6 +1,6 @@
 = form_with(model: disc, local: true) do |form|
   .row.my-2
-    .form-group
+    .form-group.ml-3
       = form.file_field :picture
   .row.my-2
     .col-4
@@ -43,5 +43,6 @@
       %p Description: 
       .form-group
         = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
-    .col-4    
-      .m-5= form.submit :Finish, :class => "btn btn-lg btn-success"
+    .col-4.my-5
+      = link_to 'Cancel', discs_path, :class => "btn btn-lg btn-danger mx-5"
+      = form.submit :Finish, :class => "btn btn-lg btn-success ml-3"

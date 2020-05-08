@@ -1,4 +1,8 @@
-%h1.my-2 Edit
-= render 'form', disc: @disc
-= link_to 'Show', @disc
-= link_to 'Back', discs_path
+.container
+  .row
+    .col-2.my-2
+      %h1 Edit
+    .col-2
+      -if @disc.picture.attached?
+        .ml-5.mt-2=image_tag(@disc.picture, size: "60x60")
+  = render 'form', disc: @disc
