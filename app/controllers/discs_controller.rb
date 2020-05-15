@@ -1,6 +1,7 @@
 class DiscsController < ApplicationController
   def index
-    @discs = current_user.discs
+    @q = current_user.discs.ransack(params[:q])
+    @discs = @q.result(distinct: true)
   end
 
   def show

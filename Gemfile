@@ -29,6 +29,8 @@ gem "haml"
 # secures user accounts
 gem 'devise'
 
+# used for search funtionality
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 
 # Use Active Storage variant
