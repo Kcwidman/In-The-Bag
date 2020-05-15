@@ -4,7 +4,8 @@
     %h1=@bag.name
     =image_tag('default_bag.png', size: "300x300")
   .col
-    =link_to "Edit bag", edit_bag_path(@bag)
+    -if @bag.user_id == current_user.id
+      =link_to "Edit bag", edit_bag_path(@bag)
 .row
   - @slots.each do |slot|
     .col-3.my-3

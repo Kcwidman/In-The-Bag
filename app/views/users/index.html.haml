@@ -1,0 +1,42 @@
+.row.col
+  %h1 Players
+.row.col.my-3
+  %h3 Search by:
+  =search_form_for @q do |f|
+    .form-group.row.ml-4
+      .col=f.search_field :name_cont, :class => "form-control", :placeholder => "name"
+      .col=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
+      .col=f.submit :class => "btn btn-primary btn-sm"
+.row.col
+  -if params[:q].present?
+    -@results.each do |user|
+      =link_to "#{user.name}", user
+  
+.row
+  .col-4.text-center
+    .card
+      .card-header.text-center
+        Featured
+      .card-body
+        %ul.list-group
+          -@featured.each do |user|
+            %li.list-group-item
+              =link_to "#{user.name}", user
+  .col-4.text-center
+    .card
+      .card-header.text-center
+        Most Followed
+      .card-body
+        %ul.list-group
+          -@most_followed.each do |user|
+            %li.list-group-item
+              =link_to "#{user.name}", user
+  .col-4.text-center
+    .card
+      .card-header.text-center
+        Following
+      .card-body
+        %ul.list-group
+          -@following.each do |user|
+            %li.list-group-item
+              =link_to "#{user.name}", user
