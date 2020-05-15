@@ -6,11 +6,12 @@
   .col
     =link_to "Edit bag", edit_bag_path(@bag)
 .row
-  - @bag.discs.each do |disc|
+  - @slots.each do |slot|
     .col-3.my-3
       .card
         .card-image-top.text-center
-          -if disc.picture.attached?
-            = link_to image_tag(disc.picture, size: "250x250"), disc
+          =slot.position
+          -if slot.disc.picture.attached?
+            = link_to image_tag(slot.disc.picture, size: "250x250"), slot.disc
           -else
-            = link_to image_tag('blank_disc.jpg', size: "250x250"), disc
+            = link_to image_tag('blank_disc.jpg', size: "250x250"), slot.disc

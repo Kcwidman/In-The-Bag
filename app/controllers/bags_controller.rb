@@ -5,11 +5,7 @@ class BagsController < ApplicationController
 
   def show
     @bag = Bag.find(params[:id])
-
-    #Attempting to order discs based on position
-    # slots = @bag.slots
-    # slots.sort_by { |obj| obj.position}
-    # @discs = slots.disc
+    @slots=@bag.slots.order ("position ASC NULLS LAST")
   end
 
   def new
@@ -18,7 +14,7 @@ class BagsController < ApplicationController
 
   def edit
     @bag = Bag.find(params[:id])
-    #Number of slots left
+    #Number of slots left, build slots
     ( @bag.capacity - Slot.where("bag_id = ?", @bag.id).count ).times { @bag.slots.build }
   end
 
@@ -50,6 +46,11 @@ class BagsController < ApplicationController
 
   def destroy
     @bag = Bag.find(params[:id])
+
+    @bag.slots.each do |slot|
+      slot.destroy
+    end
+
     @bag.destroy
     redirect_to action: "index"
   end
