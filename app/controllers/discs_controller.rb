@@ -39,6 +39,11 @@ class DiscsController < ApplicationController
 
   def destroy
     @disc = Disc.find(params[:id])
+    
+    @disc.slots.each do |slot|
+      slot.destroy
+    end
+
     @disc.destroy
     redirect_to action: "index"
   end
