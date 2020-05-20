@@ -1,10 +1,15 @@
 class BagsController < ApplicationController
+  before_action :set_bag, only: [:show, :edit, :update, :destroy]
+
+  def set_bag
+    @bag = Bag.find(params[:id])
+  end
+
   def index
     @bags = current_user.bags
   end
 
   def show
-    @bag = Bag.find(params[:id])
     @slots=@bag.slots.order ("position ASC NULLS LAST")
   end
 
@@ -13,7 +18,6 @@ class BagsController < ApplicationController
   end
 
   def edit
-    @bag = Bag.find(params[:id])
     #Number of slots left, build slots
     ( @bag.capacity - Slot.where("bag_id = ?", @bag.id).count ).times { @bag.slots.build }
   end
@@ -35,8 +39,6 @@ class BagsController < ApplicationController
   end
 
   def update
-    @bag = Bag.find(params[:id])
-
     if @bag.update_attributes(bag_params)
       redirect_to action: "show", id: @bag
     else
@@ -45,8 +47,6 @@ class BagsController < ApplicationController
   end
 
   def destroy
-    @bag = Bag.find(params[:id])
-
     @bag.slots.each do |slot|
       slot.destroy
     end
