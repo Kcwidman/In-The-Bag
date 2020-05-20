@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @featured = User.first(5)
     @most_followed = User.first(5)
     @following = User.first(5)
+    @q_empty = (params[:q]&.permit!&.to_h || {}).all? {|key, value| value.blank?}
     @q = User.all.ransack(params[:q])
     @results = @q.result
   end

@@ -8,7 +8,7 @@
       .col=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
       .col=f.submit :class => "btn btn-primary btn-sm"
 .row.col
-  -if params[:q].present?
+  -unless @q_empty
     -@results.each do |user|
       =link_to "#{user.name}", user
   
