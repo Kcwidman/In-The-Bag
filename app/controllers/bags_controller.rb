@@ -36,7 +36,10 @@ class BagsController < ApplicationController
   end
 
   def update
-    if @bag.update_attributes(bag_params)
+    # This part is an attempt at keeping the user from reducing the capacity lower than the number of discs currently in the bag. I'll try again later.
+    # if params[:capacity] < @bag.discs.count
+    #   redirect_to({action: "edit"}, alert: "Please remove the appropriate number of discs before you reduce the capcity of the bag." )
+    if @bag.update(bag_params)
       redirect_to action: "show", id: @bag
     else
       render action: "edit"

@@ -5,7 +5,7 @@
     =image_tag('default_bag.png', size: "300x300")
   .col
     -if @bag.user_id == current_user.id
-      =link_to "Edit bag", edit_bag_path(@bag)
+      =link_to "Edit bag", edit_bag_path(@bag), :class => "btn btn-success mx-auto"
 .row
   - @slots.each do |slot|
     .col-3.my-3

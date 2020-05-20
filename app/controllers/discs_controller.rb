@@ -29,7 +29,7 @@ class DiscsController < ApplicationController
   end
 
   def update
-    if @disc.update_attributes(disc_params)
+    if @disc.update(disc_params)
       redirect_to action: "show", id: @disc
     else
       render action: "edit"
