@@ -47,10 +47,6 @@ class BagsController < ApplicationController
   end
 
   def destroy
-    @bag.slots.each do |slot|
-      slot.destroy
-    end
-
     @bag.destroy
     redirect_to action: "index"
   end
