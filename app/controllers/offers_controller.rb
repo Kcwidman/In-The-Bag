@@ -3,7 +3,7 @@ class OffersController < ApplicationController
   before_action :require_offer_owner!, only: [:edit, :update, :destroy]
 
   def index
-    @q = Offer.where("state = ?", true).ransack(params[:q])
+    @q = Offer.where(public: true).ransack(params[:q])
     @offers = @q.result(distinct: true)
   end
 
@@ -51,7 +51,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:description, :state, :disc_id)
+    params.require(:offer).permit(:description, :public, :disc_id)
   end
   
   def set_offer
