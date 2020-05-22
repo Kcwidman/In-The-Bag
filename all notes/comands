@@ -1,0 +1,37 @@
+to run ruby: ruby "file name here"
+
+to open docker shell: docker-compose run app bash
+
+to start up server within a normal shell: docker-compose up
+
+to view routes within the browser: http://localhost:3000/rails/info/routes
+
+convert erb to haml: rails haml:erb2haml
+
+Rebasing steps
+  0. Commit and push all current changes onto desired branch
+  1. Merge the reviewed branch into master through github
+  2. Checkout secondary branch and rightclick master through gitlens to "Rebase current onto branch"
+  3. Force push
+
+
+HOW TO CREATE A DATABASE
+1) edit the config/database.yml file setting adapter: to postgresql
+2) change the names of the 3 databases in the yml
+3) add gem 'pg' in the gemfile
+3) run rake db:create
+4) run rake db:migrate
+
+HOW TO SET UP A DOCKER SHELL
+1) copy docker-compose.yml and .docker-development-vars from an old project (make sure to add .docker-development-vars to the .git-ignore)
+2) add "pg" gem to gemfile and remove "sqlite3"
+3) open a docker shell (docker-compose run app bash) and then run bundle install
+
+ERRORS
+PRINT ERROR:
+#error_explaination
+    - flash.each do |name, msg|
+        %h2= content_tag :div, msg, class: name
+
+SEND ERROR:
+flash[:notice] = "Error: You cannot delete No Subject, but you can rename it."
