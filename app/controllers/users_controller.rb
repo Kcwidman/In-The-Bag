@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_owner!, only: [:edit, :update, :destroy]
+
   def index
     @featured = User.first(5)
     @most_followed = User.first(5)
@@ -9,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @bags = @user.bags
     @discs = @user.discs
   end
@@ -18,30 +20,38 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def create
   end
 
   def update
-    @user = current_user
-
-    if @user.update_attributes(user_params)
-      redirect_to action: "edit", id: @user
+    if @user.update(user_params)
+      redirect_to action: "index"
     else
       render action: "edit"
     end
   end
 
   def destroy
-    @user = current_user
     @user.destroy
     redirect_to action: "index"
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:name, :username, :PDGA_num, :bio)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_user_owner!
+    if current_user != @user
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+    end
   end
 
 end

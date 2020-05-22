@@ -20,7 +20,7 @@
       -if current_user.id != @offer.user_id
         =link_to "Message Seller", "", :class => "btn btn-lg btn-success mx-3"
       -else
-        =link_to "Edit Offer", edit_offer_path(@offer), :class => "btn btn-lg btn-danger mx-3"
+        =link_to "Edit Offer", edit_offer_path(@offer), :class => "btn btn-lg btn-success mx-3"
     .col-6
       .my-5.ml-3
         .card
