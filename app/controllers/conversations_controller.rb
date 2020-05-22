@@ -16,10 +16,10 @@ class ConversationsController < ApplicationController
     if Conversation.between(params[:sender_id], params[:receiver_id]).present?
       @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).present?
     else
-      @conversation = Conversation.current_user.new(conversation_params)
+      @conversation = Conversation.new(conversation_params)
     end
 
-    redirect_to conversation_path(@conversation)
+    # redirect_to conversation_path(@conversation)
   end
 
   def destroy
