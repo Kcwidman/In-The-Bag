@@ -9,5 +9,17 @@ services:
       - bundle_cache:/usr/local/bundle:cached
     ports:
       - "3000:3000"
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:11.6
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data:delegated
+    environment:
+      - POSTGRES_USER=in_the_bag
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "15432:5432"
 volumes:
   bundle_cache:
