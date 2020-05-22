@@ -1,0 +1,23 @@
+.row.mt-3
+  .col-4
+    %h1
+      =@user.name
+  .col-8.text-right.mt-3
+    %p=@user.bio
+.row
+  - @bags.each do |bag|
+    .col-3.my-3
+      .card
+        .card-header
+          =bag.name
+        .card-image-top.text-center
+          = link_to image_tag('default_bag.png', size: "250x250"), bag_path(bag)
+.row
+  - @discs.each do |disc|
+    .col-3.my-3
+      .card
+        .card-image-top.text-center
+          -if disc.picture.attached?
+            = link_to image_tag(disc.picture, size: "250x250"), disc
+          -else
+            = link_to image_tag('blank_disc.jpg', size: "250x250"), disc

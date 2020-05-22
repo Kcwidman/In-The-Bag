@@ -1,11 +1,13 @@
 class DiscsController < ApplicationController
+  before_action :set_disc, only: [:show, :edit, :update, :destroy]
+  before_action :require_disc_owner!, only: [:edit, :update, :destroy]
+
   def index
     @q = current_user.discs.ransack(params[:q])
     @discs = @q.result(distinct: true)
   end
 
   def show
-    @disc = Disc.find(params[:id])
   end
 
   def new
@@ -13,7 +15,6 @@ class DiscsController < ApplicationController
   end
 
   def edit
-    @disc = Disc.find(params[:id])
   end
 
   def create
@@ -28,9 +29,7 @@ class DiscsController < ApplicationController
   end
 
   def update
-    @disc = Disc.find(params[:id])
-
-    if @disc.update_attributes(disc_params)
+    if @disc.update(disc_params)
       redirect_to action: "show", id: @disc
     else
       render action: "edit"
@@ -38,13 +37,24 @@ class DiscsController < ApplicationController
   end
 
   def destroy
-    @disc = Disc.find(params[:id])
     @disc.destroy
     redirect_to action: "index"
   end
 
+  private
+
   def disc_params
     params.require(:disc).permit(:model, :brand, :color, :plastic_type, :weight, :condition, :speed, :glide, :turn, :fade, :description, :nickname, :user_id, :picture)
+  end
+
+  def set_disc
+    @disc = Disc.find(params[:id])
+  end
+
+  def require_disc_owner!
+    if current_user != @disc.user
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+    end
   end
 
 end

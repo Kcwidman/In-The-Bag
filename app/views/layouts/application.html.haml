@@ -23,13 +23,16 @@
                 .dropdown-item
                   =link_to "Bags", bags_path
             %li.nav-item.m-3
-              Users
+              = link_to "Users", users_path, :class => "navbar text-light"
             %li.nav-item.m-3
               Trading
             %li.nav-item.m-3
               Messages
             %li.nav-item.m-3
-              Account
+              -if current_user
+                =link_to "Account", edit_user_path(current_user), :class => "navbar text-light"
+              -else
+                =link_to "Account", "", :class => "navbar text-light"
             %li.nav-item.m-3
               = link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar text-light"
       .text-danger.text-center

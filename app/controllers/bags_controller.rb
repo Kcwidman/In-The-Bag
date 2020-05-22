@@ -1,9 +1,6 @@
 class BagsController < ApplicationController
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
-
-  def set_bag
-    @bag = Bag.find(params[:id])
-  end
+  before_action :require_bag_owner!, only: [:edit, :update, :destroy]
 
   def index
     @bags = current_user.bags
@@ -39,7 +36,10 @@ class BagsController < ApplicationController
   end
 
   def update
-    if @bag.update_attributes(bag_params)
+    # This part is an attempt at keeping the user from reducing the capacity lower than the number of discs currently in the bag. I'll try again later.
+    # if params[:capacity] < @bag.discs.count
+    #   redirect_to({action: "edit"}, alert: "Please remove the appropriate number of discs before you reduce the capcity of the bag." )
+    if @bag.update(bag_params)
       redirect_to action: "show", id: @bag
     else
       render action: "edit"
@@ -51,8 +51,20 @@ class BagsController < ApplicationController
     redirect_to action: "index"
   end
 
+  private
+
   def bag_params
-    params.require(:bag).permit(:name, :capacity, :user_id, slots_attributes: [:disc_id, :id, :position])
+    params.require(:bag).permit(:name, :capacity, slots_attributes: [:disc_id, :id, :position])
+  end
+
+  def set_bag
+    @bag = Bag.find(params[:id])
+  end
+
+  def require_bag_owner!
+    if current_user != @bag.user
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+    end
   end
 
 end
