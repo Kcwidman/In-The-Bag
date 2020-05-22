@@ -1,0 +1,24 @@
+%h1.my-2 New Offer
+= form_for @offer do |form|
+  .row.col
+    %p Select the disc you want to offer: 
+  .row.col
+    .form-group
+      = form.collection_select :disc_id, current_user.discs, :id, :model, include_blank: "Select a disc"
+  .row.col
+    %p What would you like in return?
+  .row
+    .col-9
+      .form-group
+        = form.text_area :description, :class => "form-control", :rows => "3", :placeholder => "A new disc? Cash money? It's up to you!"
+    .col-2.my-3.ml-1
+      =form.submit "Create offer", :class => "btn btn lg btn-success m-auto"
+  .row.col
+    %p Would you like this offer to be public?
+    .input-group
+      =form.label :Public
+      \:
+      =form.radio_button :state, true, :type => "radio"
+      =form.label :Private
+      \:
+      =form.radio_button :state, false
