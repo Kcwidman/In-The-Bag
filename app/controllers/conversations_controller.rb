@@ -2,18 +2,24 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @conversations = current_user.conversations
+    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
   end
 
   def show
+  end
+
+  def new
+    @conversation = Conversation.new
   end
 
   def create
     if Conversation.between(params[:sender_id], params[:receiver_id]).present?
       @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).present?
     else
-      @conversation = Conversation.new(conversation_params)
+      @conversation = Conversation.current_user.new(conversation_params)
     end
+
+    redirect_to conversation_path(@conversation)
   end
 
   def destroy

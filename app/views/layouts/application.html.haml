@@ -32,7 +32,7 @@
             %li.nav-item.m-3
               = link_to "Users", users_path, :class => "navbar text-light"
             %li.nav-item.m-3
-              Messages
+              = link_to "Messages", conversations_path, :class => "navbar text-light"
             %li.nav-item.m-3
               -if current_user
                 =link_to "Account", edit_user_path(current_user), :class => "navbar text-light"
