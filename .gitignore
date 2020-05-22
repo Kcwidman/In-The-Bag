@@ -36,3 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 .docker-development-vars
 /pgdata
+In-The-Bag.code-workspace
