@@ -1,0 +1,5 @@
+-if @conversations.blank?
+  %strong This is where you can message other users!
+-else
+  -@conversations.each do |c|
+    =link_to c.other_party_name(current_user.id), conversation_path(c)
