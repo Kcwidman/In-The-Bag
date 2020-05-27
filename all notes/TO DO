@@ -1,0 +1,17 @@
+TO DO NOW:
+
+
+TO DO LATER:
+Make position selection more robust
+Keep users from adding the same disc multiple times
+Allow users to remove a disc from a bag
+Allow users to remove slots to reduce capacity of the bag
+
+POLISH:
+Use image picker gem for new offer page (https://github.com/airatdev/image-picker-rails) documentation: (http://rvera.github.io/image-picker/)
+Disc details on mouseover in disc index and offer details in offer index
+Pull flight chart based on disc
+Update discs in picture of bag based on color and position
+Sort by disc class in discs index
+Set up following functionality
+Require certain discs attributes if the user wants to offer the disc (such as flight numbers and picture)

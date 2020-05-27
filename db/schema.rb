@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_192741) do
+ActiveRecord::Schema.define(version: 2020_05_22_185228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 2020_05_15_192741) do
     t.integer "fade"
     t.text "description"
     t.string "nickname"
+    t.integer "user_id"
+    t.datetime "created_at"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.text "description"
+    t.boolean "public"
+    t.integer "disc_id"
     t.integer "user_id"
     t.datetime "created_at"
   end

@@ -22,10 +22,15 @@
                   =link_to "Discs", discs_path
                 .dropdown-item
                   =link_to "Bags", bags_path
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle.text-light.my-3{"data-toggle" => "dropdown", :href => "#"} Trading
+              .dropdown-menu
+                .dropdown-item 
+                  =link_to "See all offers", offers_path
+                .dropdown-item
+                  =link_to "Make an offer", new_offer_path
             %li.nav-item.m-3
               = link_to "Users", users_path, :class => "navbar text-light"
-            %li.nav-item.m-3
-              Trading
             %li.nav-item.m-3
               Messages
             %li.nav-item.m-3

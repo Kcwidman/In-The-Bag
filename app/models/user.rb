@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :discs
   has_many :bags
-  # has_many :offers
+  has_many :offers
   # has_many :conversations
 end
