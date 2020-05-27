@@ -1,17 +1,19 @@
 class ConversationsController < ApplicationController
-  before_action :set_conversation, only: [:show, :edit, :update, :destroy]
+  before_action :set_conversation, only: [:show, :destroy]
+  before_action :all_conversations, only: [:index, :show]
 
   def index
-    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
   end
 
   def show
-    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    @last_10_messages = @conversation.messages.last(10)
+    @messages = @conversation.messages
+    @message = Message.new
   end
 
   def create
     if Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).present?
-      @conversation = Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).present?
+      @conversation = Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).first
     else
       @conversation = Conversation.create(conversation_params)
     end
@@ -27,6 +29,10 @@ class ConversationsController < ApplicationController
 
   def set_conversation
     @conversation = Conversation.find(params[:id])
+  end
+
+  def all_conversations
+    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
   end
 
   def conversation_params
