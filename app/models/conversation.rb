@@ -3,6 +3,8 @@ class Conversation < ApplicationRecord
   belongs_to :receiver, class_name: "User" 
   belongs_to :sender, class_name: "User" 
 
+  #between always returns at most, 1 conversation object. Use .first after the method to retrieve the query
+  #as an object as opposed to an array of size 1.
   scope :between, -> (sender_id, receiver_id) {
     where("(conversations.sender_id = ? AND conversations.receiver_id = ?) OR 
     (conversations.sender_id = ? AND conversations.receiver_id = ?)", 

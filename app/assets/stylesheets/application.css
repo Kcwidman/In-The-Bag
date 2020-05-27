@@ -13,3 +13,12 @@
  *= require bootstrap/dist/css/bootstrap
  *= require_self
  */
+
+ .sideNavBox {
+  min-height: 100vh;
+  background-color: #90aeee;
+}
+
+.list-group-flush.sideNav {
+  background-color: #90aeee;
+}

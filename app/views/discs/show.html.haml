@@ -62,7 +62,7 @@
           .card-image-top.text-center
             =image_tag('default_flight_chart.png')
         .row.my-5
-          = link_to 'Back', discs_path, :class => "btn btn-lg btn-success mx-auto"
+          = link_to 'Back', :back, :class => "btn btn-lg btn-success mx-auto"
           -if current_user.id == @disc.user_id
             = link_to 'Edit disc', edit_disc_path(@disc), :class => "btn btn-lg btn-success mx-auto"
             = link_to 'Delete disc', disc_path(@disc), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger mx-auto"
