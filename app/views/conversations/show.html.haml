@@ -1,13 +1,6 @@
 =form_with(model: [@conversation, @message]) do |form|
   .row
-    .col-2
-      .sideNavBox
-        -if @conversations.blank?
-          %strong This is where you can message other users!
-        -else
-          -@conversations.each do |c|
-            .list-group-flush.sideNav.list-group-item
-              =link_to c.other_party_name(current_user.id), conversation_path(c), :class => "text-secondary"
+    = render "conversation_sidebar", conversation: @conversation
     .col-10
       -@messages.each do |m|
         .row.col.my-1
