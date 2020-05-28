@@ -6,7 +6,7 @@
       =image_tag('default_bag.png', size: "300x300")
     .col-2
       = link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
-      = link_to "Add some discs", new_bag_slot_path(@bag), :class => "btn btn-success mt-3"
+      = link_to "Add a disc", new_bag_slot_path(@bag), :class => "btn btn-success mt-3"
       = form.submit "Save changes", :class => "btn btn-primary mt-3"
   .row.mt-4#bag-list
     =form.fields_for :slots, @bag.slots.order("position ASC NULLS LAST") do |slot_form|
@@ -15,5 +15,5 @@
           = slot_form.hidden_field :id
           = slot_form.hidden_field :position, :class => "position-field"
           = slot_form.hidden_field :disc_id #needed to make postition persist to DB (potential rails bug)
-          =render "display_disc_picture", slot: slot_form.object
-              
+          = link_to "x", bag_slot_path(@bag, slot_form.object), method: :delete, data: {confirm: "Remove this disc from the bag?"}
+          = render "display_disc_picture", slot: slot_form.object
