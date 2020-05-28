@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :discs
-  resources :bags
+  resources :bags do
+    resources :slots, only: [:create, :new, :destroy]
+  end
   resources :users
   resources :offers do
     collection do
