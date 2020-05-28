@@ -1,5 +1,9 @@
 = form_with(model: [@bag, @slot]) do |form|
   .row.mt-4
     .col
-      =form.collection_select :disc_id, current_user.discs, :id, :model
+      -if @discs.empty?
+        %p All your discs have already been added to this bag! Add some more discs and you'll see them here.
+      =form.collection_select :disc_id, @discs, :id, :model, include_blank: "Select a disc"
       =form.submit "Add disc"
+  .row.col
+    =link_to "Back", :back, class: "btn btn-success"
