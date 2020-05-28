@@ -16,9 +16,9 @@
             Flight Chart
           .card-image-top.text-center
             =image_tag('default_flight_chart.png')
-      =link_to "Back", offers_path, :class => "btn btn-lg btn-success mx-3"
+      =link_to "Back", :back, :class => "btn btn-lg btn-success mx-3"
       -if current_user.id != @offer.user_id
-        =link_to "Message Seller", "", :class => "btn btn-lg btn-success mx-3"
+        =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-lg btn-success mx-3"
       -else
         =link_to "Edit Offer", edit_offer_path(@offer), :class => "btn btn-lg btn-success mx-3"
     .col-6
