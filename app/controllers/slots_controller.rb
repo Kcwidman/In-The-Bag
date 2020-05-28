@@ -2,7 +2,7 @@ class SlotsController < ApplicationController
   def new
     @slot = Slot.new
     @bag = Bag.find(params[:bag_id])
-    @discs = current_user.discs.where.not(id: @bag.discs.pluck(:id))
+    @discs = current_user.discs.where.not(id: @bag.discs.pluck(:id)) #all the user's discs that aren't in a bag
   end
 
   def create
