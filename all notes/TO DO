@@ -10,6 +10,7 @@ Allow users to remove slots to reduce capacity of the bag
 
 POLISH:
 Use image picker gem for new offer page (https://github.com/airatdev/image-picker-rails) documentation: (http://rvera.github.io/image-picker/)
+Make bag edit drag and drop sortable (https://github.com/itmammoth/rails_sortable)
 Disc details on mouseover in disc index and offer details in offer index
 Pull flight chart based on disc
 Update discs in picture of bag based on color and position

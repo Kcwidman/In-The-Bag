@@ -42,6 +42,7 @@ class BagsController < ApplicationController
     if @bag.update(bag_params)
       redirect_to action: "show", id: @bag
     else
+      flash[:errors] = @bag.errors.full_messages
       render action: "edit"
     end
   end
