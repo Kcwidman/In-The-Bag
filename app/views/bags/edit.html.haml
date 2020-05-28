@@ -7,12 +7,11 @@
     .col-2
       =link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
   .row.mt-4#bag-list
-    =form.fields_for :slots do |slot_form|
+    =form.fields_for :slots, @bag.slots.order("position ASC NULLS LAST") do |slot_form|
       .col-2
         .form-group
           = slot_form.hidden_field :id
           = slot_form.hidden_field :position, :class => "position-field"
-          = slot_form.collection_select :disc_id, current_user.discs, :id, :model, include_blank: "Select a disc"
-          %span.drag-handle +
-          -# = image_tag(slot_form.object.disc.picture, size: "100x100")
+          = slot_form.hidden_field :disc_id #needed to make postition persist to DB (potential rails bug)
+          = image_tag(slot_form.object.disc.picture, size: "100x100")
   = form.submit :Save, :class => "btn btn-primary"

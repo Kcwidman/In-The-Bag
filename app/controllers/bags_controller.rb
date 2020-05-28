@@ -7,7 +7,7 @@ class BagsController < ApplicationController
   end
 
   def show
-    @slots=@bag.slots.order ("position ASC NULLS LAST")
+    @slots=@bag.slots.order("position ASC NULLS LAST")
   end
 
   def new
