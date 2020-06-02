@@ -2,17 +2,8 @@ rancher:
   environment_id: 1a71443
   service_names:
     - app/web
-    - ecr/ecr-updater
-    - healthcheck/healthcheck
-    - in-the-bag-production/postgres
-    - in-the-bag-production/postgres-lb
-    - ipsec/cni-driver
-    - ipsec/ipsec
-    - network-services/metadata
-    - network-services/network-manager
-    - scheduler/scheduler
 s2i:
   builder_image: brandnewbox/bnb-ruby:2.7-postgresql
   target_image: brandnewbox/in-the-bag
-  flags: -e RAILS_ENV=production -e DEVISE_SECRET_KEY=shipit_chokes_without_this
+  flags: -e RAILS_ENV=production
   registry_host: 596395833517.dkr.ecr.us-east-1.amazonaws.com
