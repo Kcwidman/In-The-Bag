@@ -2,58 +2,7 @@
   .row
     .col-6
       .my-5.ml-3
-        .card
-          -if @disc.nickname.present?
-            .card-header.text-center
-              =@disc.nickname
-          .card-image-top.text-center
-            -if @disc.picture.attached?
-              =image_tag(@disc.picture, size: "320x320")
-            -else
-              =image_tag('blank_disc.jpg', size: "320x320")
-          .card-body
-            .card-title.text-center
-              =@disc.plastic_type
-              = "#{@disc.model},"
-              =@disc.brand
-          %ul.list-group.list-group-flush
-            %li.list-group-item.text-center
-              -if @disc.speed
-                =@disc.speed
-              -else
-                X
-              \/
-              -if @disc.glide
-                =@disc.glide
-              -else
-                X
-              \/
-              -if @disc.turn
-                =@disc.turn
-              -else
-                X
-              \/
-              -if @disc.fade
-                =@disc.fade
-              -else
-                X
-
-            %li.list-group-item
-              condition:
-              =@disc.condition
-            %li.list-group-item
-              weight:
-              =@disc.weight
-            %li.list-group-item
-              color:
-              =@disc.color
-          .card-body
-            .card-text
-              description:
-              %br
-              =@disc.description
-
-
+        = render "shared/display_disc_info", disc: @disc
     .col-6
       .my-5.ml-3
         .card
@@ -65,4 +14,4 @@
           = link_to 'Back', :back, :class => "btn btn-lg btn-success mx-auto"
           -if current_user.id == @disc.user_id
             = link_to 'Edit disc', edit_disc_path(@disc), :class => "btn btn-lg btn-success mx-auto"
-            = link_to 'Delete disc', disc_path(@disc), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger mx-auto"
+            = link_to 'Delete disc', disc_path(@disc), method: :delete, data: {confirm: "This will delete the disc from your collection; are you sure?"}, :class => "btn btn-lg btn-danger mx-auto"

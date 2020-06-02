@@ -1,0 +1,6 @@
+.card
+  .card-image-top.text-center
+    -if slot.disc.picture.attached?
+      = link_to image_tag(slot.disc.picture, size: "250x250"), slot.disc
+    -else
+      = link_to image_tag('blank_disc.jpg', size: "250x250"), slot.disc

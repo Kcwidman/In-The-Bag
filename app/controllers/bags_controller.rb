@@ -7,7 +7,7 @@ class BagsController < ApplicationController
   end
 
   def show
-    @slots=@bag.slots.order ("position ASC NULLS LAST")
+    @slots=@bag.slots.order("position ASC NULLS LAST")
   end
 
   def new
@@ -16,7 +16,6 @@ class BagsController < ApplicationController
 
   def edit
     #Number of slots left, build slots
-    ( @bag.capacity - Slot.where("bag_id = ?", @bag.id).count ).times { @bag.slots.build }
   end
 
   def create
@@ -36,12 +35,10 @@ class BagsController < ApplicationController
   end
 
   def update
-    # This part is an attempt at keeping the user from reducing the capacity lower than the number of discs currently in the bag. I'll try again later.
-    # if params[:capacity] < @bag.discs.count
-    #   redirect_to({action: "edit"}, alert: "Please remove the appropriate number of discs before you reduce the capcity of the bag." )
     if @bag.update(bag_params)
       redirect_to action: "show", id: @bag
     else
+      flash[:errors] = @bag.errors.full_messages
       render action: "edit"
     end
   end
@@ -54,7 +51,7 @@ class BagsController < ApplicationController
   private
 
   def bag_params
-    params.require(:bag).permit(:name, :capacity, slots_attributes: [:disc_id, :id, :position])
+    params.require(:bag).permit(:name, slots_attributes: [:disc_id, :id, :position])
   end
 
   def set_bag

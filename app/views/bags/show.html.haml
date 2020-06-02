@@ -9,10 +9,4 @@
 .row
   - @slots.each do |slot|
     .col-3.my-3
-      .card
-        .card-image-top.text-center
-          =slot.position
-          -if slot.disc.picture.attached?
-            = link_to image_tag(slot.disc.picture, size: "250x250"), slot.disc
-          -else
-            = link_to image_tag('blank_disc.jpg', size: "250x250"), slot.disc
+      =render "display_disc_picture", slot: slot
