@@ -6,7 +6,6 @@ Require certain discs attributes if the user wants to offer the disc (such as fl
 
 FIXES:
 Keep navbar from disappearing if screen size is too small
-require current_user to access conversations
 Require username in new user page
 
 POLISH:
@@ -18,6 +17,7 @@ Sort by disc class in discs index
 Set up following functionality
 
 STYLING:
+Error messages
 x button in bag edit
 User search
 New offer page

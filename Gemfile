@@ -26,6 +26,9 @@ gem "pg"
 # used in place of ERB files
 gem "haml"
 
+# Auto ERB to HAML
+gem "html2haml"
+
 # secures user accounts
 gem 'devise'
 
