@@ -5,8 +5,7 @@ Allow for users to search through "my offers"
 Require certain discs attributes if the user wants to offer the disc (such as flight numbers and picture)
 
 FIXES:
-Keep navbar from disappearing if screen size is too small
-Require username in new user page
+Scale images based on screen size
 
 POLISH:
 Use drawers (top drawer for discs in the bag, bottom drawer for discs to add) and multi-select for bag edit (adding discs)
