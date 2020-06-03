@@ -1,11 +1,13 @@
-TO DO NOW:
+TO DO:
 Use image picker gem for new offer page and new slot page(https://github.com/airatdev/image-picker-rails) documentation: (http://rvera.github.io/image-picker/)
-
-
-TO DO LATER:
 Combine slot add and bag edit into one page
 Allow for users to search through "my offers"
 Require certain discs attributes if the user wants to offer the disc (such as flight numbers and picture)
+
+FIXES:
+Keep navbar from disappearing if screen size is too small
+require current_user to access conversations
+Require username in new user page
 
 POLISH:
 Use drawers (top drawer for discs in the bag, bottom drawer for discs to add) and multi-select for bag edit (adding discs)
@@ -21,5 +23,3 @@ User search
 New offer page
 Messages
 Devise views
-
-Shipit test 2

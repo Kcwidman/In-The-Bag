@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :destroy]
   before_action :all_conversations, only: [:index, :show]
+  before_action :require_current_user!, only: [:show, :destroy]
 
   def index
   end
@@ -37,6 +38,12 @@ class ConversationsController < ApplicationController
 
   def conversation_params
     params.require(:conversation).permit(:sender_id, :receiver_id)
+  end
+
+  def require_current_user!
+    if @conversation.sender_id != current_user.id && @conversation.receiver_id != current_user.id
+      redirect_to({action: "index"}, alert: "You do not have permission to access this page!" )
+    end
   end
 
 end
