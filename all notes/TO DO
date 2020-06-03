@@ -8,6 +8,7 @@ FIXES:
 Scale images based on screen size
 
 POLISH:
+Make all disc pictures squares (potentially use cloudinary gem??)
 Use drawers (top drawer for discs in the bag, bottom drawer for discs to add) and multi-select for bag edit (adding discs)
 Disc details on mouseover in disc index and offer details in offer index
 Pull flight chart based on disc

@@ -2,11 +2,7 @@
   -if @disc.nickname.present?
     .card-header.text-center
       =@disc.nickname
-  .card-image-top.text-center
-    -if @disc.picture.attached?
-      =image_tag(@disc.picture, size: "320x320")
-    -else
-      =image_tag('blank_disc.jpg', size: "320x320")
+  = render "shared/display_disc_picture_as_link", disc: @disc, path: ""
   .card-body
     .card-title.text-center
       =@disc.plastic_type

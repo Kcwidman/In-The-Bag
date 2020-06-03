@@ -33,24 +33,23 @@
         .col-2
           .form-group
             = form.text_field :color, :class => "form-control", :placeholder => "color"
-      .row.my-2
+      .row.mt-2
         .col-4
           .form-group
             = form.text_field :condition, :class => "form-control", :placeholder => "condition (scale: 1-10)"
         .col-3
           .form-group
             = form.text_field :nickname, :class => "form-control", :placeholder => "nickname"
-      .row.my-2
-        .col-12
-          %p Description: 
-          .form-group
-            = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
     .col-3
-      .row.ml-4
-        -if @disc.picture.attached?
-          =image_tag(@disc.picture, size: "200x200")
-      .row.my-5
-        = link_to 'Cancel', discs_path, :class => "btn btn-danger m-auto"
-        = form.submit :Finish, :class => "btn btn-success m-auto"
-
-      
+      -if @disc.picture.attached?
+        =render "shared/display_disc_picture_as_link", disc: @disc, path: ""
+       
+  .row
+    .col-9
+      %p Description: 
+      .form-group
+        = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
+    .col-3.mt-5
+      = link_to 'Cancel', discs_path, :class => "btn btn-danger mr-4"
+      = form.submit :Finish, :class => "btn btn-success m-auto"
+  

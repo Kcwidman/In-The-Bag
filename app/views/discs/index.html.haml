@@ -22,9 +22,4 @@
 .row
   - @discs.each do |disc|
     .col-3.my-3
-      .card
-        .card-image-top.text-center
-          -if disc.picture.attached?
-            = link_to image_tag(disc.picture, size: "250x250"), disc
-          -else
-            = link_to image_tag('blank_disc.jpg', size: "250x250"), disc
+      = render "shared/display_disc_picture_as_link", disc: disc, path: disc

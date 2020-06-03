@@ -16,4 +16,4 @@
           = slot_form.hidden_field :position, :class => "position-field"
           = slot_form.hidden_field :disc_id #needed to make postition persist to DB (potential rails bug)
           = link_to "x", bag_slot_path(@bag, slot_form.object), method: :delete, data: {confirm: "Remove this disc from the bag?"}
-          = render "display_disc_picture", slot: slot_form.object
+          = render "shared/display_disc_picture_as_link", disc: slot_form.object.disc, path: slot_form.object.disc
