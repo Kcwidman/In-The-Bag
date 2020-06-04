@@ -1,20 +1,16 @@
 class SlotsController < ApplicationController
-  def new
-    @slot = Slot.new
+  def edit
     @bag = Bag.find(params[:bag_id])
+    @existing_slots = @bag.slots.to_a
     @discs = current_user.discs.where.not(id: @bag.discs.pluck(:id)) #all the user's discs that aren't in a bag
+    @new_slots = @discs.map { |d| @bag.slots.build(disc: d) }
   end
 
-  def create
+  def update
     @bag = Bag.find(params[:bag_id])
-    @slot = Slot.new(slot_params)
-    @slot.bag = @bag
-    @slot.position = @bag.discs.count
-
-    if @slot.save
+    if @bag.update(slot_params)
       redirect_to edit_bag_path(@bag)
     else
-      flash[:errors] = @slot.errors.full_messages
       render action: "new"
     end
   end
@@ -28,6 +24,6 @@ class SlotsController < ApplicationController
   private
 
   def slot_params
-    params.require(:slot).permit(:bag_id, :disc_id, :position)
+    params.require(:bag).permit(slots_attributes: [:disc_id, :id, :position, :_destroy])
   end
 end

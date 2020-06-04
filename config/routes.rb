@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   resources :discs
   resources :bags do
-    resources :slots, only: [:create, :new, :destroy]
+    resource :slots, only: [:edit, :update]
   end
   resources :users
   resources :offers do

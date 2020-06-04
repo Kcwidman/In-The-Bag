@@ -15,7 +15,6 @@ class BagsController < ApplicationController
   end
 
   def edit
-    #Number of slots left, build slots
   end
 
   def create
