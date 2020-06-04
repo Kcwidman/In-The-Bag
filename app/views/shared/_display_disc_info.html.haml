@@ -2,7 +2,10 @@
   -if @disc.nickname.present?
     .card-header.text-center
       =@disc.nickname
-  = render "shared/display_disc_picture_as_link", disc: @disc, path: ""
+  .row
+    .col-1
+    .col-10
+      = render "shared/display_disc_picture_as_link", disc: @disc, path: ""
   .card-body
     .card-title.text-center
       =@disc.plastic_type
