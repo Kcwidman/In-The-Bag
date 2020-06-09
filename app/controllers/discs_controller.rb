@@ -53,8 +53,7 @@ class DiscsController < ApplicationController
 
   def require_disc_owner!
     if current_user != @disc.user
-      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!")
     end
   end
-
 end

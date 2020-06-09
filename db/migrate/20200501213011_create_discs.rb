@@ -1,7 +1,6 @@
 class CreateDiscs < ActiveRecord::Migration[6.0]
   def change
     create_table :discs do |t|
-
       t.column :model, :string
       t.column :brand, :string
       t.column :color, :string

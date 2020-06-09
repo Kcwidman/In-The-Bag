@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class DiscsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class DiscsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create disc" do
-    assert_difference('Disc.count') do
-      post discs_url, params: { disc: {  } }
+    assert_difference("Disc.count") do
+      post discs_url, params: {disc: {}}
     end
 
     assert_redirected_to disc_url(Disc.last)
@@ -34,12 +34,12 @@ class DiscsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update disc" do
-    patch disc_url(@disc), params: { disc: {  } }
+    patch disc_url(@disc), params: {disc: {}}
     assert_redirected_to disc_url(@disc)
   end
 
   test "should destroy disc" do
-    assert_difference('Disc.count', -1) do
+    assert_difference("Disc.count", -1) do
       delete disc_url(@disc)
     end
 

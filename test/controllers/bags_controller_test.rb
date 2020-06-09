@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class BagsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class BagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create bag" do
-    assert_difference('Bag.count') do
-      post bags_url, params: { bag: {  } }
+    assert_difference("Bag.count") do
+      post bags_url, params: {bag: {}}
     end
 
     assert_redirected_to bag_url(Bag.last)
@@ -34,12 +34,12 @@ class BagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update bag" do
-    patch bag_url(@bag), params: { bag: {  } }
+    patch bag_url(@bag), params: {bag: {}}
     assert_redirected_to bag_url(@bag)
   end
 
   test "should destroy bag" do
-    assert_difference('Bag.count', -1) do
+    assert_difference("Bag.count", -1) do
       delete bag_url(@bag)
     end
 

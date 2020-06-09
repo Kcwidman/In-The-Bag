@@ -13,10 +13,10 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    if Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).present?
-      @conversation = Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).first
+    @conversation = if Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).present?
+      Conversation.between(conversation_params[:sender_id], conversation_params[:receiver_id]).first
     else
-      @conversation = Conversation.create(conversation_params)
+      Conversation.create(conversation_params)
     end
     redirect_to conversation_path(@conversation)
   end
@@ -42,8 +42,7 @@ class ConversationsController < ApplicationController
 
   def require_current_user!
     if @conversation.sender_id != current_user.id && @conversation.receiver_id != current_user.id
-      redirect_to({action: "index"}, alert: "You do not have permission to access this page!" )
+      redirect_to({action: "index"}, alert: "You do not have permission to access this page!")
     end
   end
-
 end

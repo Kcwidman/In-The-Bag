@@ -53,15 +53,14 @@ class OffersController < ApplicationController
   def offer_params
     params.require(:offer).permit(:description, :public, :disc_id)
   end
-  
+
   def set_offer
     @offer = Offer.find(params[:id])
   end
 
   def require_offer_owner!
     if current_user != @offer.user
-      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!")
     end
   end
-  
 end

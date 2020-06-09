@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {
-    registrations: 'registrations'
+  devise_for :users, controllers: {
+    registrations: "registrations"
   }
   resources :discs
   resources :bags do
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages, only: [:create]
   end
-  
+
   root "users#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

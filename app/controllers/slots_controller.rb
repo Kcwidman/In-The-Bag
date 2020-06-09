@@ -2,7 +2,7 @@ class SlotsController < ApplicationController
   def edit
     @bag = Bag.find(params[:bag_id])
     @existing_slots = @bag.slots.to_a
-    @discs = current_user.discs.where.not(id: @bag.discs.pluck(:id)) #all the user's discs that aren't in a bag
+    @discs = current_user.discs.where.not(id: @bag.discs.pluck(:id)) # all the user's discs that aren't in a bag
     @new_slots = @discs.map { |d| @bag.slots.build(disc: d) }
   end
 

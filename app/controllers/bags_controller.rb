@@ -7,7 +7,7 @@ class BagsController < ApplicationController
   end
 
   def show
-    @slots=@bag.slots.order("position ASC NULLS LAST")
+    @slots = @bag.slots.order("position ASC NULLS LAST")
   end
 
   def new
@@ -21,8 +21,8 @@ class BagsController < ApplicationController
     @bag = current_user.bags.new(bag_params)
 
     if @bag.save
-      #For "Add some discs" button
-      if params['bag_edit']
+      # For "Add some discs" button
+      if params["bag_edit"]
         redirect_to edit_bag_path(@bag)
       else
         redirect_to bags_path
@@ -59,8 +59,7 @@ class BagsController < ApplicationController
 
   def require_bag_owner!
     if current_user != @bag.user
-      redirect_to({action: "show"}, alert: "You do not have permission to access this page!" )
+      redirect_to({action: "show"}, alert: "You do not have permission to access this page!")
     end
   end
-
 end
