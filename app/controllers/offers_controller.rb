@@ -67,35 +67,17 @@ class OffersController < ApplicationController
 
   def check_disc_attributes
     @disc = Disc.find(params[:disc_id])
-    @notice = ""
-    @picture = "picture"
-    if @disc.picture.blank?
-      @notice = @notice + "picture, "
-    end
-    if @disc.model.blank?
-      @notice = @notice + "mold, "
-    end
-    if @disc.plastic_type.blank?
-      @notice = @notice + "plastic type, "
-    end
-    if @disc.brand.blank?
-      @notice = @notice + "brand, "
-    end
-    if flight_numbers_present?(@disc)
-      @notice = @notice + "flight numbers, "
-    end
-    if @disc.weight.blank?
-      @notice = @notice + "weight, "
-    end
-    if @disc.color.blank?
-      @notice = @notice + "color, "
-    end
-    if @disc.condition.blank?
-      @notice = @notice + "condition, "
-    end
-    if @notice.present?
-      @notice.delete_suffix!(", ")
-      redirect_to({action: "select"}, alert: "Please update your disc with the following information before you trade it: #{@notice}")
+    attributes = []
+    attributes << "picture" if @disc.picture.blank?
+    attributes << "plastic type" if @disc.plastic_type.blank?
+    attributes << "brand" if @disc.brand.blank?
+    attributes << "flight numbers" if flight_numbers_present?(@disc)
+    attributes << "weight" if @disc.weight.blank?
+    attributes << "color" if @disc.color.blank?
+    attributes << "condition" if @disc.condition.blank?
+    attributes = attributes.join(", ").to_s
+    if attributes.present?
+      redirect_to({action: "select"}, alert: "Please update your disc with the following information before you trade it: #{attributes}")
     end
   end
 
