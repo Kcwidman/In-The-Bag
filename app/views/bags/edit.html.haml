@@ -4,10 +4,10 @@
     .col-3
       =form.text_field :name, :class => "form-control"
       =image_tag('default_bag.png', size: "300x300")
-    .col-2
+    .col-3
       = link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
-      = link_to "Add a disc", new_bag_slot_path(@bag), :class => "btn btn-success mt-3"
-      = form.submit "Save changes", :class => "btn btn-primary mt-3"
+      = link_to "Add or remove discs", edit_bag_slots_path(@bag), :class => "btn btn-primary mt-3"
+      = form.submit "Save changes", :class => "btn btn-success mt-3"
   .row.mt-4#bag-list
     =form.fields_for :slots, @bag.slots.order("position ASC NULLS LAST") do |slot_form|
       .col-3
@@ -15,5 +15,4 @@
           = slot_form.hidden_field :id
           = slot_form.hidden_field :position, :class => "position-field"
           = slot_form.hidden_field :disc_id #needed to make postition persist to DB (potential rails bug)
-          = link_to "x", bag_slot_path(@bag, slot_form.object), method: :delete, data: {confirm: "Remove this disc from the bag?"}
           = render "shared/display_disc_picture_as_link", disc: slot_form.object.disc, path: slot_form.object.disc
