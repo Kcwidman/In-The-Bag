@@ -2,7 +2,7 @@
   .row
     .col-9
       .form-group.ml-1
-        = form.file_field :picture
+        = form.file_field :picture, class: "form-control-file"
       .row.my-2
         .col-4
           .form-group
@@ -13,6 +13,8 @@
         .col-4
           .form-group
             = form.text_field :brand, :class => "form-control", :placeholder => "brand"
+        .col-2.pr-0.mt-2
+          Flight numbers: 
         .col-2
           .form-group
             = form.text_field :speed, :class => "form-control", :placeholder => "speed"
@@ -26,15 +28,19 @@
           .form-group
             = form.text_field :fade, :class => "form-control", :placeholder => "fade"
         .col-2
-          .form-group
-            = form.text_field :weight, :class => "form-control", :placeholder => "weight"
         .col-2
+          Weight:
           .form-group
-            = form.text_field :color, :class => "form-control", :placeholder => "color"
-        .col-4
+            = form.text_field :weight, :class => "form-control", :placeholder => "(grams)"
+        .col-2
+          Color:
           .form-group
-            = form.text_field :condition, :class => "form-control", :placeholder => "condition (scale: 1-10)"
-        .col-3
+            = form.select :color, @colors, {}, :class => "form-control"
+        .col-2
+          Condition: 
+          .form-group
+            = form.select :condition, (1..10), {}, class: "form-control"
+        .col-4.mt-4
           .form-group
             = form.text_field :nickname, :class => "form-control", :placeholder => "nickname"
         .col-12
@@ -47,4 +53,3 @@
       .row.col.mt-3
         = link_to 'Cancel', discs_path, :class => "btn btn-danger mr-4"
         = form.submit :Finish, :class => "btn btn-success m-auto"
-  
