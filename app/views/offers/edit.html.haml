@@ -1,6 +1,0 @@
-.row.my-2
-  .col-9
-    %h1 Edit Offer
-  .col-3
-    =link_to "Delete Offer", offer_path(@offer), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn btn-danger mx-auto"
-=render 'form', offer: @offer

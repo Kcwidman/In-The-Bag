@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :offers do
     collection do
       get :my_offers
+      get :select
     end
   end
   resources :conversations do

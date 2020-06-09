@@ -1,2 +1,14 @@
 %h1.my-2 New Offer
-= render 'form', offer: @offer
+= form_for @offer do |form|
+  .row
+    .col-6
+      %p What would you like in return?
+      .row
+        .col-12
+          .form-group
+            = form.hidden_field :disc_id
+            = form.text_area :description, :class => "form-control", :rows => "3", :placeholder => "A new disc? Cash money? It's up to you!"
+      .row.col.mt-3
+        =form.submit "Create offer", :class => "btn btn lg btn-success"
+    .col-6
+      = render "shared/display_disc_picture_as_link", disc: @offer.disc, path: ""
