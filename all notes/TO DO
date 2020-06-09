@@ -1,7 +1,7 @@
 TO DO:
 StandardRB in a seperate branch
-Use image picker gem for new offer page and new slot page(https://github.com/airatdev/image-picker-rails) documentation: (http://rvera.github.io/image-picker/)
 Select disc based on image in offer create
+Combine slot add and bag edit into one page
 Allow for users to search through "my offers"
 Require certain discs attributes if the user wants to offer the disc (such as flight numbers and picture)
 Encrypt live version of the site
@@ -10,6 +10,7 @@ FIXES:
 
 
 POLISH:
+Unread message badge next to name of message partner
 Prettier disc selector checkbox (https://codepen.io/vasslehel/pen/XbVNLY)
 Make all disc pictures squares (potentially use cloudinary gem??)
 Disc details on mouseover in disc index and offer details in offer index
@@ -20,7 +21,6 @@ Set up following functionality
 
 STYLING:
 Error messages
-x button in bag edit
 User search
 New offer page
 Messages
