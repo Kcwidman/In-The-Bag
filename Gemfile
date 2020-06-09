@@ -26,6 +26,9 @@ gem "pg"
 # used in place of ERB files
 gem "haml"
 
+# Auto ERB to HAML
+gem "html2haml"
+
 # secures user accounts
 gem 'devise'
 
@@ -38,6 +41,9 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+# Used for adding discs to bag and keeping order
+gem 'acts_as_list'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

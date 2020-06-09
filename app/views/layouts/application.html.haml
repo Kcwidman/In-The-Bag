@@ -12,33 +12,35 @@
       %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.text-white
         .navbar-brand 
           = link_to "In The Bag", root_path, :class => "navbar text-light"
+        %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
 
         #navbarSupportedContent.collapse.navbar-collapse
           %ul.navbar-nav.ml-auto
             %li.nav-item.dropdown
-              %a#navbarDropdown.nav-link.dropdown-toggle.text-light.my-3{"data-toggle" => "dropdown", :href => "#"} My Collection
+              %a#navbarDropdown.nav-link.dropdown-toggle.text-light.ml-3.my-2{"data-toggle" => "dropdown", :href => "#"} My Collection
               .dropdown-menu
-                .dropdown-item 
+                .dropdown-item
                   =link_to "Discs", discs_path
                 .dropdown-item
                   =link_to "Bags", bags_path
             %li.nav-item.dropdown
-              %a#navbarDropdown.nav-link.dropdown-toggle.text-light.my-3{"data-toggle" => "dropdown", :href => "#"} Trading
+              %a#navbarDropdown.nav-link.dropdown-toggle.text-light.ml-3.my-2{"data-toggle" => "dropdown", :href => "#"} Trading
               .dropdown-menu
                 .dropdown-item 
                   =link_to "See all offers", offers_path
                 .dropdown-item
                   =link_to "Make an offer", new_offer_path
-            %li.nav-item.m-3
+            %li.nav-item.my-2
               = link_to "Users", users_path, :class => "navbar text-light"
-            %li.nav-item.m-3
+            %li.nav-item.my-2
               = link_to "Messages", conversations_path, :class => "navbar text-light"
-            %li.nav-item.m-3
+            %li.nav-item.my-2
               -if current_user
                 =link_to "Account", edit_user_path(current_user), :class => "navbar text-light"
               -else
                 =link_to "Account", "", :class => "navbar text-light"
-            %li.nav-item.m-3
+            %li.nav-item.my-2
               = link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar text-light"
       .text-danger.text-center
         - flash.each do |name, msg|

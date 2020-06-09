@@ -1,0 +1,27 @@
+= form_with(model: [@bag], url: bag_slots_path) do |form|
+  .row.my-2
+    .col-10
+      %h1 Discs in the bag: 
+    .col-2
+      = form.submit "Save changes", class: "btn btn-success mt-2"
+    .row.col
+      -@existing_slots.each do |slot|
+        = form.fields_for :slots, slot do |slot_form|
+          .col-3
+            = slot_form.hidden_field :disc_id
+            = slot_form.check_box :_destroy, { checked: slot_form.object.persisted? }, '0', '1'
+            = slot_form.label :_destroy do
+              = image_tag slot_form.object.disc.picture, class: "img-fluid"
+  .row.my-5
+    -if @new_slots.blank?
+      %h3 There are no more discs left to add.
+    -else
+      %h1 Add discs to the bag:
+      .row
+        -@new_slots.each do |slot|
+          = form.fields_for :slots, slot do |slot_form|
+            .col-3
+              = slot_form.hidden_field :disc_id
+              = slot_form.check_box :_destroy, { checked: slot_form.object.persisted? }, '0', '1'
+              = slot_form.label :_destroy do
+                = image_tag slot_form.object.disc.picture, class: "img-fluid"

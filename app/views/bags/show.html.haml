@@ -9,4 +9,4 @@
 .row
   - @slots.each do |slot|
     .col-3.my-3
-      =render "display_disc_picture", slot: slot
+      =render "shared/display_disc_picture_as_link", disc: slot.disc, path: slot.disc

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+    registrations: 'registrations'
+  }
   resources :discs
   resources :bags do
-    resources :slots, only: [:create, :new, :destroy]
+    resource :slots, only: [:edit, :update]
   end
   resources :users
   resources :offers do

@@ -1,0 +1,6 @@
+.card
+  .card-image-top.text-center
+    -if disc.picture.attached?
+      = link_to image_tag(disc.picture, class: "img-fluid"), path
+    -else
+      = link_to image_tag('blank_disc.jpg', class: "img-fluid"), path

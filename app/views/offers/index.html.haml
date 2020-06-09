@@ -28,9 +28,4 @@
 .row
   - @offers.each do |offer|
     .col-3.my-3
-      .card
-        .card-image-top.text-center
-          -if offer.disc.picture.attached?
-            = link_to image_tag(offer.disc.picture, size: "250x250"), offer
-          -else
-            = link_to image_tag('blank_disc.jpg', size: "250x250"), offer
+      = render "shared/display_disc_picture_as_link", disc: offer.disc, path: offer
