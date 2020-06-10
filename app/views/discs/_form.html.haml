@@ -9,25 +9,26 @@
             = form.text_field :plastic_type, :class => "form-control", :placeholder => "plastic type"
         .col-4
           .form-group
-            = form.text_field :model, :class => "form-control", :placeholder => "model"
+            = form.text_field :model, :class => "form-control", :placeholder => "mold"
         .col-4
           .form-group
             = form.text_field :brand, :class => "form-control", :placeholder => "brand"
-        .col-2.pr-0.mt-2
-          Flight numbers: 
-        .col-2
+        .col-4.mt-4
+          .form-group
+            = form.text_field :nickname, :class => "form-control", :placeholder => "nickname" 
+        .col-2.pr-0
+          Flight numbers:
           .form-group
             = form.text_field :speed, :class => "form-control", :placeholder => "speed"
-        .col-2
+        .col-2.mt-4
           .form-group
             = form.text_field :glide, :class => "form-control", :placeholder => "glide"
-        .col-2
+        .col-2.mt-4
           .form-group
             = form.text_field :turn, :class => "form-control", :placeholder => "turn"
-        .col-2
+        .col-2.mt-4
           .form-group
             = form.text_field :fade, :class => "form-control", :placeholder => "fade"
-        .col-2
         .col-2
           Weight:
           .form-group
@@ -40,16 +41,14 @@
           Condition: 
           .form-group
             = form.select :condition, (1..10), {}, class: "form-control"
-        .col-4.mt-4
-          .form-group
-            = form.text_field :nickname, :class => "form-control", :placeholder => "nickname"
-        .col-12
-          %p Description: 
-          .form-group
-            = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
     .col-3
       -if @disc.picture.attached?
         =render "shared/display_disc_picture_as_link", disc: @disc, path: ""
-      .row.col.mt-3
-        = link_to 'Cancel', discs_path, :class => "btn btn-danger mr-4"
-        = form.submit :Finish, :class => "btn btn-success m-auto"
+  .row
+    .col-9
+      %p Description: 
+      .form-group
+        = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
+    .col-3.mt-5
+      = link_to 'Cancel', discs_path, :class => "btn btn-danger mr-4"
+      = form.submit :Finish, :class => "btn btn-success m-auto"
