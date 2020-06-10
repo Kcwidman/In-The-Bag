@@ -12,7 +12,8 @@ Rebasing steps
   0. Commit and push all current changes onto desired branch
   1. Merge the reviewed branch into master through github
   2. Checkout secondary branch and rightclick master through gitlens to "Rebase current onto branch"
-  3. Force push
+  3. Force push in a machine level terminal 'git push --force'
+  4. Checkout master and fetch and pull
 
 
 HOW TO CREATE A DATABASE
