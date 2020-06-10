@@ -6,8 +6,9 @@
     .form-group.row.ml-4
       .col=f.search_field :name_eq, :class => "form-control", :placeholder => "name"
       .col=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
-      .col-1=f.submit :class => "btn btn-primary btn-sm"
-      .col-3=link_to "Clear search", users_path, class: "btn btn-primary btn-sm ml-3"
+      .col.pl-0
+        =link_to "x", users_path
+        =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row.col
   -unless @q_empty
     .list-group
