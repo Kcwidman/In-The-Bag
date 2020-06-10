@@ -1,26 +1,28 @@
-.container
-  .row
-    .col-6
-      .my-5.ml-3
-        .row.my-5
-          .col
-            %h3 Offer Details: 
-            .card
-              .card-header
-                Seller: 
-                %strong=@offer.user.name
-              .card-body.card-text
-                =@offer.description
-        .card
-          .card.card-header.text-center
-            Flight Chart
-          .card-image-top.text-center
-            =image_tag('default_flight_chart.png')
-      =link_to "Back", :back, :class => "btn btn-lg btn-success mx-3"
+.row.mt-3
+  .col-6
+    %h3 Offer Details: 
+    .card.my-3
+      .card-header
+        Seller: 
+        %strong
+          = "#{@offer.user.name},"
+          = @offer.user.PDGA_num
+      .card-body.card-text
+        =@offer.description
+    .card
+      .card.card-header.text-center
+        Flight Chart
+      .card-image-top.text-center
+        =image_tag('default_flight_chart.png')
+    .row.col.mt-3
+      =link_to "Back", :back, :class => "btn btn-lg btn-success mr-2"
       -if current_user.id != @offer.user_id
-        =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-lg btn-success mx-3"
+        =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-lg btn-success mx-2"
       -else
-        =link_to "Edit Offer", edit_offer_path(@offer), :class => "btn btn-lg btn-success mx-3"
-    .col-6
-      .my-5.ml-3
-        = render "shared/display_disc_info", disc: @disc
+        =link_to "Delete Offer", offer_path(@offer), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger mx-2"
+        -if @offer.public == true
+          =link_to "Make private", offer_path(@offer, public: false), method: :patch, class: "btn btn-primary btn-lg mx-2"
+        -else
+          =link_to "Make public", offer_path(@offer, public: true), method: :patch, class: "btn btn-primary btn-lg mx-2"
+  .col-6
+    = render "shared/display_disc_info", disc: @disc
