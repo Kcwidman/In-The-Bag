@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @messages = @conversation.messages
+    @messages = @conversation.messages.order("id ASC")
     @message = Message.new
     @unread = Message.where("conversation_id = ? AND user_id != ? AND read = ?", @conversation.id, current_user.id, false)
     @unread.each do |m|
