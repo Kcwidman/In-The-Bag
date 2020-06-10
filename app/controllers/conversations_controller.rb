@@ -7,9 +7,12 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @last_10_messages = @conversation.messages.last(10)
     @messages = @conversation.messages
     @message = Message.new
+    @unread = Message.where("conversation_id = ? AND user_id != ? AND read = ?", @conversation.id, current_user.id, false)
+    @unread.each do |m|
+      m.update(read: true)
+    end
   end
 
   def create
