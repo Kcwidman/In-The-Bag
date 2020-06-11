@@ -6,37 +6,58 @@
     .form-group.row.ml-4
       .col=f.search_field :name_cont, :class => "form-control", :placeholder => "name"
       .col=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
-      .col=f.submit :class => "btn btn-primary btn-sm"
-.row.col
-  -unless @q_empty
-    -@results.each do |user|
-      =link_to "#{user.name}", user
-  
+      .col.pl-0
+        =link_to "x", users_path
+        =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   .col-4.text-center
-    .card
+    .card.h-100
       .card-header.text-center
-        Featured
+        Your Recent Followers
       .card-body
         %ul.list-group
-          -@featured.each do |user|
-            %li.list-group-item
-              =link_to "#{user.name}", user
+          -if @followers.blank?
+            None yet, share your profile
+          -else
+            -@followers.each do |user|
+              %li.list-group-item
+                =link_to "#{user.name}", user
+          -if @followers.count > 5
+            =link_to "See all...", edit_user_path(current_user), class: "my-3"
   .col-4.text-center
-    .card
+    .card.h-100
+      .card-header.text-center
+        Following
+      .card-body
+        %ul.list-group
+          -if @following.blank?
+            %p You aren't following anyone yet
+          -else
+            -@following.each do |user|
+              %li.list-group-item
+                =link_to "#{user.name}", user
+          -if @following.count > 5
+            =link_to "See all...", edit_user_path(current_user), class: "my-3"
+  .col-4.text-center
+    .card.h-100
       .card-header.text-center
         Most Followed
       .card-body
         %ul.list-group
           -@most_followed.each do |user|
-            %li.list-group-item
+            %li.list-group-item.d-flex.justify-content-between.align-items-center
               =link_to "#{user.name}", user
-  .col-4.text-center
-    .card
-      .card-header.text-center
-        Following
-      .card-body
-        %ul.list-group
-          -@following.each do |user|
-            %li.list-group-item
+              .badge-pill.badge-primary
+                = user.follower_count
+.row
+  .col.mt-5
+    -unless @q_empty
+      .list-group
+        -@results.each do |user|
+          %li.list-group-item
+            -if user.PDGA_num.present?
+              =link_to "#{user.name}, #{user.PDGA_num}", user
+            -else
               =link_to "#{user.name}", user
+    -if @results.blank?
+      %p No users found

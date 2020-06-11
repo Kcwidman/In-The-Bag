@@ -1,0 +1,10 @@
+%h1 My Offers
+-if @offers.blank?
+  %h5 You don't have any offers yet.
+.row
+  - @offers.each do |offer|
+    .col-3.my-3
+      .card
+        .card-header
+          = "#{offer.disc.plastic_type} #{offer.disc.model}, #{offer.disc.brand}"
+        = render "shared/display_disc_picture_as_link", disc: offer.disc, path: offer

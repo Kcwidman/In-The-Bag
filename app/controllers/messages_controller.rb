@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = current_user.messages.new(message_params)
+    @message.read = false
     @message.conversation = @conversation
     if @message.save
     else

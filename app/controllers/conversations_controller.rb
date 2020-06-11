@@ -7,9 +7,12 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @last_10_messages = @conversation.messages.last(10)
-    @messages = @conversation.messages
+    @messages = @conversation.messages.order(created_at: :asc)
     @message = Message.new
+    @unread = Message.where(conversation: @conversation, read: false).where.not(user: current_user)
+    @unread.each do |m|
+      m.update(read: true)
+    end
   end
 
   def create
@@ -33,7 +36,7 @@ class ConversationsController < ApplicationController
   end
 
   def all_conversations
-    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    @conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(receiver_id: current_user.id))
   end
 
   def conversation_params

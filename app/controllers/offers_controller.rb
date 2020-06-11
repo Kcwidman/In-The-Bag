@@ -39,9 +39,7 @@ class OffersController < ApplicationController
   end
 
   def my_offers
-    @q = current_user.offers.ransack(params[:q])
-    @offers = @q.result(distinct: true)
-    render action: "index"
+    @offers = current_user.offers
   end
 
   def select
@@ -52,7 +50,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:description, :public, :disc_id, :disc)
+    params.require(:offer).permit(:description, :public, :disc_id)
   end
 
   def set_offer

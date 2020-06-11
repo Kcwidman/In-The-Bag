@@ -1,10 +1,14 @@
 .row.mt-3
-  .col-4
+  .col-6
     %h1
       =@user.name
       -if current_user != @user
         =link_to "Message", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @user.id}), method: :post, :class => "btn btn-success"
-  .col-8.text-right.mt-3
+        -if Follow.where(user_id: current_user.id, following_id: @user.id).blank?
+          =link_to "Follow", follows_path(user_id: current_user.id, following_id: @user.id), method: :post, class: "btn btn-primary"
+        -else
+          =link_to "Unfollow", follows_path(user_id: current_user.id, following_id: @user.id), method: :delete, class: "btn btn-primary"
+  .col-6.text-right.mt-3
     %p=@user.bio
 .row
   - @bags.each do |bag|
@@ -17,9 +21,6 @@
 .row
   - @discs.each do |disc|
     .col-3.my-3
-      .card
-        .card-image-top.text-center
-          -if disc.picture.attached?
-            = link_to image_tag(disc.picture, size: "250x250"), disc
-          -else
-            = link_to image_tag('blank_disc.jpg', size: "250x250"), disc
+      = render "shared/display_disc_picture_as_link", disc: disc, path: disc
+  -if @discs.blank?
+    %h5.m-3 This user hasn't added anything to their collection yet.

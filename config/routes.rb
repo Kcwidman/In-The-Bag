@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages, only: [:create]
   end
+  resource :follows, only: [:create, :destroy]
 
   root "users#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

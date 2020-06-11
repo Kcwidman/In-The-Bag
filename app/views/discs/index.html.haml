@@ -17,9 +17,12 @@
         =f.search_field :speed_eq, :class => "form-control", :placeholder => "speed"
       .col-2
         =f.search_field :color_cont, :class => "form-control", :placeholder => "color"
-      .col-1
-        =f.submit :class => "btn btn-primary btn-sm"
+      .col.pl-0
+        = link_to "x", discs_path
+        =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   - @discs.each do |disc|
     .col-3.my-3
       = render "shared/display_disc_picture_as_link", disc: disc, path: disc
+  -if @discs.blank?
+    %h5.ml-3 No discs found
