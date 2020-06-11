@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def edit
     @followers = current_user.followers
-    @following = current_user.following
+    @following = current_user.followings
   end
 
   def create
