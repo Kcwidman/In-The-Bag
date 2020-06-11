@@ -1,6 +1,8 @@
 .row.mt-3
   .col-6
-    %h3 Offer Details: 
+    %h3 Offer Details:
+    = render "shared/display_disc_info", disc: @disc
+  .col-6.my-4
     .card.my-3
       .card-header
         Seller: 
@@ -9,11 +11,7 @@
           = @offer.user.PDGA_num
       .card-body.card-text
         =@offer.description
-    .card
-      .card.card-header.text-center
-        Flight Chart
-      .card-image-top.text-center
-        =image_tag('default_flight_chart.png')
+    =render "shared/display_flight_chart", disc: @offer.disc
     .row.col.mt-3
       =link_to "Back", :back, :class => "btn btn-lg btn-success mr-2"
       -if current_user.id != @offer.user_id
@@ -24,5 +22,3 @@
           =link_to "Make private", offer_path(@offer, public: false), method: :patch, class: "btn btn-primary btn-lg mx-2"
         -else
           =link_to "Make public", offer_path(@offer, public: true), method: :patch, class: "btn btn-primary btn-lg mx-2"
-  .col-6
-    = render "shared/display_disc_info", disc: @disc

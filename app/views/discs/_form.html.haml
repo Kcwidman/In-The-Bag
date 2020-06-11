@@ -41,6 +41,12 @@
           Condition: 
           .form-group
             = form.select :condition, (1..10), {}, class: "form-control"
+        .col-3
+          Flight Chart ID:
+          .form-group
+            =form.text_field :flight_chart_id, class: "form-control"
+        .col-3.mt-4
+          =link_to "What is this?", flight_chart_explanation_discs_path, class: "btn btn-primary btn-small"
     .col-3
       -if @disc.picture.attached?
         =render "shared/display_disc_picture_as_link", disc: @disc, path: ""

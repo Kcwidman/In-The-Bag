@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_155438) do
+ActiveRecord::Schema.define(version: 2020_06_11_184125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_155438) do
     t.string "nickname"
     t.integer "user_id"
     t.datetime "created_at"
+    t.integer "flight_chart_id"
   end
 
   create_table "follows", force: :cascade do |t|

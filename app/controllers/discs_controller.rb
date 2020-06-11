@@ -44,7 +44,7 @@ class DiscsController < ApplicationController
   private
 
   def disc_params
-    params.require(:disc).permit(:model, :brand, :color, :plastic_type, :weight, :condition, :speed, :glide, :turn, :fade, :description, :nickname, :user_id, :picture)
+    params.require(:disc).permit(:model, :brand, :color, :plastic_type, :weight, :condition, :speed, :glide, :turn, :fade, :description, :nickname, :user_id, :picture, :flight_chart_id)
   end
 
   def set_disc

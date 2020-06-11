@@ -5,11 +5,7 @@
         = render "shared/display_disc_info", disc: @disc
     .col-6
       .my-5.ml-3
-        .card
-          .card.card-header.text-center
-            Flight Chart
-          .card-image-top.text-center
-            =image_tag('default_flight_chart.png')
+        = render "shared/display_flight_chart", disc: @disc
         .row.my-5
           = link_to 'Back', :back, :class => "btn btn-lg btn-success mx-auto"
           -if current_user.id == @disc.user_id
