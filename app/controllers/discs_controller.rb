@@ -12,11 +12,9 @@ class DiscsController < ApplicationController
 
   def new
     @disc = Disc.new
-    @colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Black", "Clear", "Multi-color"]
   end
 
   def edit
-    @colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Black", "Clear", "Multi-color"]
   end
 
   def create
