@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @followers = current_user.followers.last(5)
     @most_followed = User.all.order("follower_count DESC").first(5)
-    @following = current_user.following.last(5)
+    @following = current_user.followings.last(5)
     @q_empty = (params[:q]&.permit!&.to_h || {}).all? { |key, value| value.blank? }
     @q = User.all.ransack(params[:q])
     @results = @q.result
