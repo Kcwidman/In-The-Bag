@@ -24,3 +24,5 @@
   - @discs.each do |disc|
     .col-3.my-3
       = render "shared/display_disc_picture_as_link", disc: disc, path: disc
+  -if @discs.blank?
+    %h5.ml-3 No discs found

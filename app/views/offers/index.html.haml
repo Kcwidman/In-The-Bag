@@ -1,5 +1,7 @@
 -if params[:action] == "my_offers"
   %h1 My Offers
+  -if @offers.blank?
+    %h5 You don't have any offers yet. 
 -else
   %h1 Offers
 -unless params[:action] == "my_offers"

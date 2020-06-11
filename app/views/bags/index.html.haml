@@ -11,3 +11,5 @@
           =bag.name
         .card-image-top.text-center
           = link_to image_tag('default_bag.png', size: "250x250"), bag_path(bag)
+  -if @bags.blank?
+    %h5.m-3 You don't have any bags yet
