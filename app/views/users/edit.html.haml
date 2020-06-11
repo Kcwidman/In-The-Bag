@@ -1,8 +1,7 @@
 =form_for @user do |form|
   .row.col.mb-5
     %h1 Account
-  .row.col
-    .col-1
+  .row
     .col-4.pr-0
       %h3 Account info:
       .row.col.form-group
@@ -14,8 +13,28 @@
         =form.text_area :bio, rows: "5", :class => "form-control", :placeholder => "What's interesting about you?"
       .row.col.ml-5
         = link_to "Change email/password", edit_user_registration_path, :class => "btn btn-secondary"
-    .col-2
-    .col-4
-  = form.submit :Save, :class => "btn btn-primary"
-
-  
+    .col-3.offset-1.text-center
+      .card
+        .card-header.text-center
+          Your Followers
+        .card-body
+          %ul.list-group
+            -if @followers.blank?
+              None yet, share your profile
+            -else
+              -@followers.each do |user|
+                %li.list-group-item
+                  =link_to "#{user.name}", user
+    .col-3.offset-1.text-center
+      .card
+        .card-header.text-center
+          Following
+        .card-body
+          %ul.list-group
+            -if @following.blank?
+              %p You aren't following anyone yet
+            -else
+              -@following.each do |user|
+                %li.list-group-item
+                  =link_to "#{user.name}", user
+  = form.submit :Save, :class => "btn btn-primary my-3"
