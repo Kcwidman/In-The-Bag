@@ -11,7 +11,7 @@ class FollowsController < ApplicationController
 
   def destroy
     #calls .first in order to get a single entry. The where call only returns one follow
-    @follow = Follow.where("user_id = ? AND following_id = ?", params[:user_id], params[:following_id]).first
+    @follow = Follow.where(user_id: params[:user_id], following_id: params[:following_id]).first
     #update follower count
     follower = User.find(params[:following_id])
     current_follower_count = follower.follower_count
