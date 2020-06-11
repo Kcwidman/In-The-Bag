@@ -39,9 +39,7 @@ class OffersController < ApplicationController
   end
 
   def my_offers
-    @q = current_user.offers.ransack(params[:q])
-    @offers = @q.result(distinct: true)
-    render action: "index"
+    @offers = current_user.offers
   end
 
   def select

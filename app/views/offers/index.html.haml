@@ -1,34 +1,28 @@
--if params[:action] == "my_offers"
-  %h1 My Offers
-  -if @offers.blank?
-    %h5 You don't have any offers yet. 
--else
-  %h1 Offers
--unless params[:action] == "my_offers"
-  .col.pl-0
-    =search_form_for @q do |f|
-      %h4 Search by: User
-      .form-group.row
-        .col-3
-          =f.search_field :user_name_cont, :class => "form-control", :placeholder => "name"
-        .col-3
-          =f.search_field :user_PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number"
-        .col-4
-      %h4 Search by: Disc
-      .form-group.row
-        .col-2
-          =f.search_field :disc_model_cont, :class => "form-control", :placeholder => "mold"
-        .col-2
-          =f.search_field :disc_plastic_type_cont, :class => "form-control", :placeholder => "plastic type"
-        .col-2
-          =f.search_field :disc_brand_cont, :class => "form-control", :placeholder => "brand"
-        .col-2
-          =f.search_field :disc_speed_eq, :class => "form-control", :placeholder => "speed"
-        .col-2
-          =f.search_field :disc_color_cont, :class => "form-control", :placeholder => "color"
-        .col.pl-0
-          = link_to "x", offers_path
-          =f.submit :class => "btn btn-primary btn-sm ml-3"
+%h1 Offers
+.col.pl-0
+  =search_form_for @q do |f|
+    %h4 Search by: User
+    .form-group.row
+      .col-3
+        =f.search_field :user_name_cont, :class => "form-control", :placeholder => "name"
+      .col-3
+        =f.search_field :user_PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number"
+      .col-4
+    %h4 Search by: Disc
+    .form-group.row
+      .col-2
+        =f.search_field :disc_model_cont, :class => "form-control", :placeholder => "mold"
+      .col-2
+        =f.search_field :disc_plastic_type_cont, :class => "form-control", :placeholder => "plastic type"
+      .col-2
+        =f.search_field :disc_brand_cont, :class => "form-control", :placeholder => "brand"
+      .col-2
+        =f.search_field :disc_speed_eq, :class => "form-control", :placeholder => "speed"
+      .col-2
+        =f.search_field :disc_color_cont, :class => "form-control", :placeholder => "color"
+      .col.pl-0
+        = link_to "x", offers_path
+        =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   - @offers.each do |offer|
     .col-3.my-3
