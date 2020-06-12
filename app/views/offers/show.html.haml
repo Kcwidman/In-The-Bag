@@ -14,9 +14,9 @@
     =render "shared/display_flight_chart", disc: @offer.disc
     .row.col.mt-3
       =link_to "Back", :back, :class => "btn btn-success d-flex justify-content-center d-md-table mx-auto"
-      -if current_user.id != @offer.user_id
+      -if user_signed_in? && current_user.id != @offer.user_id
         =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-success d-flex justify-content-center d-md-table mx-auto"
-      -else
+      -elsif current_user == @offer.user
         =link_to "Delete Offer", offer_path(@offer), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger d-flex justify-content-center d-md-table mx-auto"
         -if @offer.public? == true
           =link_to "Make private", offer_path(@offer, public: false), method: :patch, class: "btn btn-primary d-flex justify-content-center d-md-table mx-auto"

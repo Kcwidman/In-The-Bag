@@ -3,7 +3,7 @@
     %h1=@bag.name
     = render "shared/display_bag_picture", bag: @bag
   .col
-    -if @bag.user_id == current_user.id
+    -if user_signed_in? && @bag.user_id == current_user.id
       =link_to "Edit bag", edit_bag_path(@bag), :class => "btn btn-primary mx-auto"
 .row
   - @slots.each do |slot|

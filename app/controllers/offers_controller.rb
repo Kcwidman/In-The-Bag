@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
   before_action :require_offer_owner!, only: [:edit, :update, :destroy]
   before_action :check_disc_attributes, only: [:new]

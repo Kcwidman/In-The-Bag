@@ -1,4 +1,5 @@
 class DiscsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_disc, only: [:show, :edit, :update, :destroy]
   before_action :require_disc_owner!, only: [:edit, :update, :destroy]
 

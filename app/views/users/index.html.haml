@@ -12,34 +12,35 @@
           =link_to "x", users_path
           =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
-  .col-4.text-center
-    .card.h-100
-      .card-header.text-center
-        Your Recent Followers
-      .card-body
-        %ul.list-group
-          -if @followers.blank?
-            None yet, share your profile
-          -else
-            -@followers.each do |user|
-              %li.list-group-item
-                =link_to "#{user.name}", user
-          -if @followers.count > 5
-            =link_to "See all...", edit_user_path(current_user), class: "my-3"
-  .col-4.text-center
-    .card.h-100
-      .card-header.text-center
-        Following
-      .card-body
-        %ul.list-group
-          -if @following.blank?
-            %p You aren't following anyone yet
-          -else
-            -@following.each do |user|
-              %li.list-group-item
-                =link_to "#{user.name}", user
-          -if @following.count > 5
-            =link_to "See all...", edit_user_path(current_user), class: "my-3"
+  -if user_signed_in?
+    .col-4.text-center
+      .card.h-100
+        .card-header.text-center
+          Your Recent Followers
+        .card-body
+          %ul.list-group
+            -if @followers.blank?
+              None yet, share your profile
+            -else
+              -@followers.each do |user|
+                %li.list-group-item
+                  =link_to "#{user.name}", user
+            -if @followers.count > 5
+              =link_to "See all...", edit_user_path(current_user), class: "my-3"
+    .col-4.text-center
+      .card.h-100
+        .card-header.text-center
+          Following
+        .card-body
+          %ul.list-group
+            -if @following.blank?
+              %p You aren't following anyone yet
+            -else
+              -@following.each do |user|
+                %li.list-group-item
+                  =link_to "#{user.name}", user
+            -if @following.count > 5
+              =link_to "See all...", edit_user_path(current_user), class: "my-3"
   .col-4.text-center
     .card.h-100
       .card-header.text-center

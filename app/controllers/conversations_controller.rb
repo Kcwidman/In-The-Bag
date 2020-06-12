@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_conversation, only: [:show, :destroy]
   before_action :all_conversations, only: [:index, :show]
   before_action :require_current_user!, only: [:show, :destroy]
