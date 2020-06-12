@@ -75,7 +75,7 @@ class OffersController < ApplicationController
     attributes << "condition" if @disc.condition.blank?
     attributes = attributes.join(", ").to_s
     if attributes.present?
-      redirect_to({action: "select"}, alert: "Please update your disc with the following information before you trade it: #{attributes}")
+      redirect_to edit_disc_path(@disc), alert: "Please update your disc with the following information before you trade it: #{attributes}"
     end
   end
 
