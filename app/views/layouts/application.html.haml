@@ -2,6 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ content: "width=device-width, initial-scale=1.0", name:"viewport" }
     %title InTheBag
     = csrf_meta_tags
     = csp_meta_tag
@@ -21,24 +22,25 @@
               %a#navbarDropdown.nav-link.dropdown-toggle.text-light.ml-3.my-2{"data-toggle" => "dropdown", :href => "#"} My Collection
               .dropdown-menu
                 .dropdown-item
-                  =link_to "Discs", discs_path
+                  =link_to "Discs", discs_path, class: "text-light"
                 .dropdown-item
-                  =link_to "Bags", bags_path
+                  =link_to "Bags", bags_path, class: "text-light"
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle.text-light.ml-3.my-2{"data-toggle" => "dropdown", :href => "#"} Trading
               .dropdown-menu
                 .dropdown-item 
-                  =link_to "All offers", offers_path
+                  =link_to "All offers", offers_path, class: "text-light"
                 .dropdown-item
-                  =link_to "Make an offer", select_offers_path
+                  =link_to "Make an offer", select_offers_path, class: "text-light"
                 .dropdown-item
-                  =link_to "My offers", my_offers_offers_path
+                  =link_to "My offers", my_offers_offers_path, class: "text-light"
             %li.nav-item.my-2
               = link_to "Users", users_path, :class => "navbar text-light"
             %li.nav-item.my-2.d-flex.align-items-center
               = link_to "Messages", conversations_path, :class => "navbar text-light"
               -if user_signed_in?
-                -total_unread_count = Message.where(read: false).where.not(user_id: current_user.id).count
+                -@conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(receiver_id: current_user.id)).to_a
+                -total_unread_count = Message.where(read: false, conversation: @conversations).where.not(user_id: current_user.id).count
                 .badge-pill.badge-secondary
                   =total_unread_count unless total_unread_count == 0
             %li.nav-item.my-2
