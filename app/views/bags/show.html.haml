@@ -1,5 +1,14 @@
 .row.mt-4
-  .col.offset-4.text-center
+  .col-4
+    .row.my-5
+    .row.my-5
+    .row.my-5
+    .row.my-5
+    .row.my-5
+    .row.mb-4
+    .row
+      =link_to "Back", :back, class: "btn btn-success ml-auto"
+  .col.text-center
     %h1=@bag.name
     = render "shared/display_bag_picture", bag: @bag
   .col
