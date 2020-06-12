@@ -50,7 +50,7 @@
                 =link_to "Account", "", :class => "navbar text-light"
             %li.nav-item.my-2
               = link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar text-light"
-      .text-danger.text-center
+      .alert-secondary.text-center
         - flash.each do |name, msg|
           %strong= content_tag :div, msg, class: name
       = yield
