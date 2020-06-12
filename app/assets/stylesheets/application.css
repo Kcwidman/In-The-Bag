@@ -28,3 +28,11 @@
 a:link{
   text-decoration: none; 
 }
+
+.dropdown-menu{
+  background-color: #0275d8;
+}
+
+.dropdown-item:hover{
+  background-color: #0275d8;
+}
