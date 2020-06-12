@@ -1,28 +1,27 @@
 =form_with(model: [@conversation, @message]) do |form|
-  .row
+  .row.col.mx-0.px-0
     = render "conversation_sidebar", conversation: @conversation
-    .col-9
+    .message-area
       -if @messages.blank?
         %p.my-3 Say something and you'll see your messages here
       -@messages.each do |m|
-        .col-11
-          -if current_user != m.user
-            .row
-              .col
-                %strong=m.user.name
-            .row
-              .col
-                =m.body
-          -else
-            .row
-              .col.text-right
-                %strong=m.user.name
-            .row
-              .col.text-right
-                =m.body
-      .row.mt-4
-        .col-11
-          .form-group.message-form.mt-auto
+        -if current_user != m.user
+          .row.mx-4
+            .col
+              %strong=m.user.name
+          .row.mx-4
+            .col
+              =m.body
+        -else
+          .row.mx-4
+            .col.text-right
+              %strong=m.user.name
+          .row.mx-4
+            .col.text-right
+              =m.body
+      .row.m-4.mx-0.px-0
+        .col-10
+          .form-group.message-form
             = form.text_area :body, :class => "form-control", :placeholder => "Message #{@conversation.other_party_name(current_user.id)}..."
-        .col-1
+        .col-2
           = form.submit "Send", :class => "btn btn-success"
