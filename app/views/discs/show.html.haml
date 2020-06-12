@@ -7,8 +7,8 @@
       .my-5.ml-3
         = render "shared/display_flight_chart", disc: @disc
         .row.my-5
-          = link_to 'Back', :back, :class => "btn btn-lg btn-success mx-auto"
+          = link_to 'Back', :back, :class => "btn btn-success mx-auto"
           -if current_user.id == @disc.user_id
-            = link_to 'Edit disc', edit_disc_path(@disc), :class => "btn btn-lg btn-success mx-auto"
-            = link_to 'Trade disc', new_offer_path(disc_id: @disc.id), :class => "btn btn-lg btn-success mx-auto"
-            = link_to 'Delete disc', disc_path(@disc), method: :delete, data: {confirm: "This will delete the disc from your collection; are you sure?"}, :class => "btn btn-lg btn-danger mx-auto"
+            = link_to 'Delete', disc_path(@disc), method: :delete, data: {confirm: "This will delete the disc from your collection; are you sure?"}, :class => "btn btn-danger mx-auto"
+            = link_to 'Edit', edit_disc_path(@disc), :class => "btn btn-success mx-auto"
+            = link_to 'Trade', new_offer_path(disc_id: @disc.id), :class => "btn btn-success mx-auto"

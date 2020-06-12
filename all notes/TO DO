@@ -1,4 +1,6 @@
 TO DO:
+Figure out why pictures do not persist after a new deploy
+Protect from integer overflow
 Encrypt live version of the site
 
 FIXES:

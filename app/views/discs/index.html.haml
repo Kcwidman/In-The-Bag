@@ -1,8 +1,8 @@
 .row.mt-3
   .col-5
     %h1 My Discs
-  .col-2.ml-auto
-    = link_to 'New Disc', new_disc_path, :class => "btn btn-lg btn-success"
+  .col-4.offset-3
+    = link_to 'New Disc', new_disc_path, :class => "btn btn-lg btn-success float-right"
 .col.pl-0
   %h3 Search by: 
   =search_form_for @q do |f|
