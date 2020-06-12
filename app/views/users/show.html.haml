@@ -1,14 +1,15 @@
 .row.mt-3
-  .col-6
+  .col-7.pr-0
     %h1
       =@user.name
       -if current_user != @user
-        =link_to "Message", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @user.id}), method: :post, :class => "btn btn-success"
+        =link_to "Message", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @user.id}), method: :post, :class => "btn btn-success btn-sm"
         -if Follow.where(user_id: current_user.id, following_id: @user.id).blank?
-          =link_to "Follow", follows_path(user_id: current_user.id, following_id: @user.id), method: :post, class: "btn btn-primary"
+          =link_to "Follow", follows_path(user_id: current_user.id, following_id: @user.id), method: :post, class: "btn btn-primary btn-sm"
         -else
-          =link_to "Unfollow", follows_path(user_id: current_user.id, following_id: @user.id), method: :delete, class: "btn btn-primary"
-  .col-6.text-right.mt-3
+          =link_to "Unfollow", follows_path(user_id: current_user.id, following_id: @user.id), method: :delete, class: "btn btn-primary btn-sm"
+  .col-5
+    %strong Bio:
     %p=@user.bio
 .row
   - @bags.each do |bag|
@@ -17,7 +18,7 @@
         .card-header
           =bag.name
         .card-image-top.text-center
-          = link_to image_tag('default_bag.png', size: "250x250"), bag_path(bag)
+          = render "shared/display_bag_picture_as_link", bag: bag, path: bag_path(bag)
 .row
   - @discs.each do |disc|
     .col-3.my-3
