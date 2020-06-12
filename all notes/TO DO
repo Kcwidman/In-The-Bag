@@ -1,6 +1,8 @@
 TO DO:
+Allow access to some pages without being signed in
 Figure out why pictures do not persist after a new deploy (Implement S3 for picture storage)
 Protect from integer overflow
+Set up errbit
 Encrypt live version of the site
 
 FIXES:

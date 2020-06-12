@@ -30,7 +30,7 @@
       .row
         -@offers.each do |offer|
           .col-4.no-gutters
-            =render "shared/display_disc_picture", disc: offer.disc
+            =render "shared/display_disc_picture_as_link", disc: offer.disc, path: offer_path(offer)
       .row.mt-4
         .col.text-center
           =link_to "View more", offers_path, class: "btn btn-success"
