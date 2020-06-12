@@ -10,5 +10,5 @@
           = link_to 'Back', :back, :class => "btn btn-success mx-auto"
           -if current_user.id == @disc.user_id
             = link_to 'Delete', disc_path(@disc), method: :delete, data: {confirm: "This will delete the disc from your collection; are you sure?"}, :class => "btn btn-danger mx-auto"
-            = link_to 'Edit', edit_disc_path(@disc), :class => "btn btn-success mx-auto"
+            = link_to 'Edit', edit_disc_path(@disc), :class => "btn btn-primary mx-auto"
             = link_to 'Trade', new_offer_path(disc_id: @disc.id), :class => "btn btn-success mx-auto"

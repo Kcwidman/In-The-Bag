@@ -1,9 +1,13 @@
 = form_with(model: [@bag], url: bag_slots_path) do |form|
   .row.my-2
-    .col-10
-      %h1 Discs in the bag: 
-    .col-2
-      = form.submit "Save changes", class: "btn btn-success mt-2"
+    .col-8
+      -if @existing_slots.blank?
+        %h3 Your bag is empty
+      -else
+        %h1 In the bag: 
+    .col-4
+      .row.mx-0
+        = form.submit "Save changes", class: "btn btn-success mt-2 ml-auto"
     .row.col
       -@existing_slots.each do |slot|
         = form.fields_for :slots, slot do |slot_form|
@@ -15,9 +19,9 @@
   .row.my-5
     .col
       -if @new_slots.blank?
-        %h3 There are no more discs left to add.
+        %h3 You don't have any discs to add
       -else
-        %h1 Add discs to the bag:
+        %h1 Add to the bag:
         .row
           -@new_slots.each do |slot|
             = form.fields_for :slots, slot do |slot_form|
