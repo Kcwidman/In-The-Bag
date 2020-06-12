@@ -1,0 +1,36 @@
+.row
+  .col.mt-5.text-center
+    %h1 Get started!
+.row.my-5
+  .col.text-center
+    -unless user_signed_in?
+      = link_to "Log in", new_user_session_path, class: "btn btn-primary mx-3"
+      = link_to "Sign up", new_user_registration_path, class: "btn btn-primary mx-3"
+.row
+  .col-5.offset-1
+    .card.card-body
+      %h3.mb-3 Plan and share your game
+      %p Add discs
+      .row
+        .col-4.no-gutters
+          =image_tag "destroyer.jpg", class: "img-fluid"
+        .col-4.no-gutters
+          =image_tag "roc3.jpg", class: "img-fluid"
+        .col-4.no-gutters
+          =image_tag "sexton_firebird.jpg", class: "img-fluid"
+            
+      .row.mt-3.no-gutters
+        %p And fill your bag
+        .col-10.offset-1
+          =image_tag "default_bag.png", class: "img-fluid"
+  .col-5
+    .card.card-body
+      %h3.mb-3 Find the perfect disc with trading
+      %p Recent offers:
+      .row
+        -@offers.each do |offer|
+          .col-4.no-gutters
+            =render "shared/display_disc_picture", disc: offer.disc
+      .row.mt-4
+        .col.text-center
+          =link_to "View more", offers_path, class: "btn btn-success"

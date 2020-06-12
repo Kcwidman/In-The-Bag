@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
   resource :follows, only: [:create, :destroy]
+  resource :landing_page, only: [:index]
 
-  root "users#index"
+  root "landing_page#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
