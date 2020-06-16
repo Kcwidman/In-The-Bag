@@ -3,29 +3,28 @@
   =search_form_for @q do |f|
     %h4 Search by: User
     .form-group.row
-      .col-3
+      .col-6.col-sm-3
         =f.search_field :user_name_cont, :class => "form-control", :placeholder => "name"
-      .col-3
+      .col-6.col-sm-3
         =f.search_field :user_PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number"
-      .col-4
     %h4 Search by: Disc
     .form-group.row
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :disc_model_cont, :class => "form-control", :placeholder => "mold"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :disc_plastic_type_cont, :class => "form-control", :placeholder => "plastic type"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :disc_brand_cont, :class => "form-control", :placeholder => "brand"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :disc_speed_eq, :class => "form-control", :placeholder => "speed"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :disc_color_cont, :class => "form-control", :placeholder => "color"
-      .col.pl-0
+      .col-4.col-sm-2.pl-0.mt-2
         = link_to "x", offers_path
         =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   - @offers.each do |offer|
-    .col-3.my-3
+    .col-6.col-sm-3.my-3
       .card.h-100
         .card-header
           = "#{offer.disc.plastic_type} #{offer.disc.model}, #{offer.disc.brand}"
