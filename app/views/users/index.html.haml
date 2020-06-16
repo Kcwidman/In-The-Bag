@@ -39,7 +39,7 @@
                   =link_to "#{user.name}", user
             -if @followers.count > 5
               =link_to "See all...", edit_user_path(current_user), class: "my-3"
-    .col-12.col-sm-4.text-center
+    .col-12.col-sm-4.text-center.mt-3
       .card.h-100
         .card-header.text-center
           Following
@@ -53,7 +53,7 @@
                   =link_to "#{user.name}", user
             -if @following.count > 5
               =link_to "See all...", edit_user_path(current_user), class: "my-3"
-  .col-12.col-sm-4.text-center
+  .col-12.col-sm-4.text-center.mt-3
     .card.h-100
       .card-header.text-center
         Most Followed
