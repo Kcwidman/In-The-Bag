@@ -1,7 +1,7 @@
 Airbrake.configure do |config|
   config.host = 'https://errbit.brandnewops.com'
   config.project_id = 1 # required, but any positive integer works
-  config.project_key = '<project-key-from-errbit>'
+  config.project_key = "c1c0def2fc77e7d7013882b4d297193f"
 
   config.environment = Rails.env
   config.ignore_environments = %w(development test)
