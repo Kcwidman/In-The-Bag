@@ -1,28 +1,28 @@
 .row.mt-3
-  .col-5
+  .col-8
     %h1 My Discs
-  .col-4.offset-3
-    = link_to 'New Disc', new_disc_path, :class => "btn btn-lg btn-success float-right"
+  .col-4
+    = link_to 'New Disc', new_disc_path, :class => "btn btn-success float-right"
 .col.pl-0
   %h3 Search by: 
   =search_form_for @q do |f|
     .form-group.row
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :model_cont, :class => "form-control", :placeholder => "mold"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :plastic_type_cont, :class => "form-control", :placeholder => "plastic type"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :brand_cont, :class => "form-control", :placeholder => "brand"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :speed_eq, :class => "form-control", :placeholder => "speed"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :color_cont, :class => "form-control", :placeholder => "color"
-      .col.pl-0
+      .col-4.col-sm-2.pl-0.mt-2
         = link_to "x", discs_path
         =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   - @discs.each do |disc|
-    .col-3.my-3
+    .col-4.col-sm-3.my-3
       = render "shared/display_disc_picture_as_link", disc: disc, path: disc
   -if @discs.blank?
     %h5.ml-3 No discs found

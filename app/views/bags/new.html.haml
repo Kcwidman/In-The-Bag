@@ -1,12 +1,14 @@
 = form_for @bag do |form|
   .row
-    .col-4
+    .col-12.col-sm-4
       %h1 New Bag
-    .col-4.my-5
-      .form-group.ml-3
+    .col-12.col-sm-4.mt-5
+      .form-group
         =form.text_field :name, :class => "form-control", placeholder: "Give it a name"
       =render "shared/display_bag_picture", bag: @bag
   .row
-    = link_to "Cancel", bags_path, :class => "btn btn-lg btn-danger mx-auto"
-    = form.submit "Add some discs", :class => "btn btn-lg btn-primary mx-auto", :name => "bag_edit"
-    = form.submit "Finish bag", :class => "btn btn-lg btn-success mx-auto"
+    .col-0.col-sm-4
+    .col
+      = link_to "Cancel", bags_path, :class => "btn btn-danger mx-2"
+      = form.submit "Add discs", :class => "btn btn-primary mx-2", :name => "bag_edit"
+      = form.submit "Finish bag", :class => "btn btn-success mx-2"

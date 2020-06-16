@@ -1,21 +1,18 @@
 = form_with(model: [@bag], url: bag_slots_path) do |form|
   .row.my-2
-    .col-8
+    .col
       -if @existing_slots.blank?
         %h3 Your bag is empty
       -else
         %h1 In the bag: 
-    .col-4
-      .row.mx-0
-        = form.submit "Save changes", class: "btn btn-success mt-2 ml-auto"
-    .row.col
-      -@existing_slots.each do |slot|
-        = form.fields_for :slots, slot do |slot_form|
-          .col-3
-            = slot_form.hidden_field :disc_id
-            = slot_form.check_box :_destroy, { checked: slot_form.object.persisted? }, '0', '1'
-            = slot_form.label :_destroy do
-              =render "shared/display_disc_picture", disc: slot_form.object.disc
+      .row
+        -@existing_slots.each do |slot|
+          = form.fields_for :slots, slot do |slot_form|
+            .col-4.col-sm-3
+              = slot_form.hidden_field :disc_id
+              = slot_form.check_box :_destroy, { checked: slot_form.object.persisted? }, '0', '1'
+              = slot_form.label :_destroy do
+                =render "shared/display_disc_picture", disc: slot_form.object.disc
   .row.my-5
     .col
       -if @new_slots.blank?
@@ -25,8 +22,10 @@
         .row
           -@new_slots.each do |slot|
             = form.fields_for :slots, slot do |slot_form|
-              .col-3
+              .col-4.col-sm-3
                 = slot_form.hidden_field :disc_id
                 = slot_form.check_box :_destroy, { checked: slot_form.object.persisted? }, '0', '1'
                 = slot_form.label :_destroy do
                   =render "shared/display_disc_picture", disc: slot_form.object.disc
+  .row
+    = form.submit "Save changes", class: "btn btn-success m-3"

@@ -1,10 +1,10 @@
 = form_for @bag do |form|
   .row.mt-4
-    .col-4
-    .col-4
+    .col-0.col-sm-4
+    .col-6.col-sm-4
       =form.text_field :name, :class => "form-control"
       = render "shared/display_bag_picture", bag: @bag
-    .col-4
+    .col-6.col-sm-4
       .row
         = link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
       .row
@@ -13,7 +13,7 @@
         = form.submit "Save changes", :class => "btn btn-success mt-3"
   .row.mt-4#bag-list
     =form.fields_for :slots, @bag.slots.order("position ASC NULLS LAST") do |slot_form|
-      .col-3
+      .col-4.col-sm-3
         .form-group
           = slot_form.hidden_field :id
           = slot_form.hidden_field :position, :class => "position-field"

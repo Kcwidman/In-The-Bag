@@ -3,20 +3,20 @@
   %h3 Find the disc you want to trade: 
   =search_form_for @q, url: select_offers_path do |f|
     .form-group.row
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :model_cont, :class => "form-control", :placeholder => "mold"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :plastic_type_cont, :class => "form-control", :placeholder => "plastic type"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :brand_cont, :class => "form-control", :placeholder => "brand"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :speed_eq, :class => "form-control", :placeholder => "speed"
-      .col-2
+      .col-4.col-sm-2.mt-2
         =f.search_field :color_cont, :class => "form-control", :placeholder => "color"
-      .col.pl-0
+      .col-4.col-sm-2.pl-0.mt-2
         = link_to "x", select_offers_path
         =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
   - @discs.each do |disc|
-    .col-3.my-3
+    .col-4.col-sm-3.my-3
       = render "shared/display_disc_picture_as_link", disc: disc, path: new_offer_path(disc_id: disc.id)
