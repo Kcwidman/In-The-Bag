@@ -1,11 +1,16 @@
 =form_with(model: [@conversation, @message]) do |form|
   .row.no-gutters
-    .col-3.col-sm-3
-      = render "conversation_sidebar", conversation: @conversation
-    .col-9.col-sm-9
+    -unless params[:collapsed]
+      .col-5.col-sm-3
+        = render "conversation_sidebar"
+    .col
       .message-area
+        -if params[:collapsed]
+          =link_to ">", conversation_path(@conversation), class: "btn btn-sm btn-secondary btn-small p-0"
+        -else
+          =link_to "<", conversation_path(@conversation, collapsed: true), class: "btn btn-sm btn-secondary btn-small p-0"
         -if @messages.blank?
-          %p Say something and you'll see your messages here
+          %p.ml-3 Say something and you'll see your messages here
         -@messages.each do |m|
           -if current_user != m.user
             .row.mx-1
