@@ -6,14 +6,26 @@
     %h3 Search by:
     =search_form_for @q do |f|
       .form-group.row
-        .col=f.search_field :name_cont, :class => "form-control", :placeholder => "name"
-        .col=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
-        .col.pl-0
+        .col-6.col-sm-4=f.search_field :name_cont, :class => "form-control", :placeholder => "name"
+        .col-6.col-sm-4=f.search_field :PDGA_num_eq, :class => "form-control", :placeholder => "PDGA number", :default => "0"
+        .col-4.col-sm-4.ml-auto
           =link_to "x", users_path
           =f.submit :class => "btn btn-primary btn-sm ml-3"
 .row
+  .col.mt-5
+    -unless @q_empty
+      .list-group
+        -@results.each do |user|
+          %li.list-group-item
+            -if user.PDGA_num.present?
+              =link_to "#{user.name}, #{user.PDGA_num}", user
+            -else
+              =link_to "#{user.name}", user
+    -if @results.blank?
+      %p No users found
+.row
   -if user_signed_in?
-    .col-4.text-center
+    .col-12.col-sm-4.text-center
       .card.h-100
         .card-header.text-center
           Your Recent Followers
@@ -27,7 +39,7 @@
                   =link_to "#{user.name}", user
             -if @followers.count > 5
               =link_to "See all...", edit_user_path(current_user), class: "my-3"
-    .col-4.text-center
+    .col-12.col-sm-4.text-center
       .card.h-100
         .card-header.text-center
           Following
@@ -41,7 +53,7 @@
                   =link_to "#{user.name}", user
             -if @following.count > 5
               =link_to "See all...", edit_user_path(current_user), class: "my-3"
-  .col-4.text-center
+  .col-12.col-sm-4.text-center
     .card.h-100
       .card-header.text-center
         Most Followed
@@ -52,15 +64,3 @@
               =link_to "#{user.name}", user
               .badge-pill.badge-primary.py-0.px-1
                 = user.follower_count
-.row
-  .col.mt-5
-    -unless @q_empty
-      .list-group
-        -@results.each do |user|
-          %li.list-group-item
-            -if user.PDGA_num.present?
-              =link_to "#{user.name}, #{user.PDGA_num}", user
-            -else
-              =link_to "#{user.name}", user
-    -if @results.blank?
-      %p No users found

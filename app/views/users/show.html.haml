@@ -1,19 +1,21 @@
 .row.mt-3
-  .col-7.pr-0
+  .col-12.col-sm-6.pr-0
     %h1
       =@user.name
-      -if user_signed_in? && current_user != @user
-        =link_to "Message", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @user.id}), method: :post, :class => "btn btn-success btn-sm"
-        -if Follow.where(user_id: current_user.id, following_id: @user.id).blank?
-          =link_to "Follow", follows_path(user_id: current_user.id, following_id: @user.id), method: :post, class: "btn btn-primary btn-sm"
-        -else
-          =link_to "Unfollow", follows_path(user_id: current_user.id, following_id: @user.id), method: :delete, class: "btn btn-primary btn-sm"
-  .col-5
+  .col-12.col-sm-6
     %strong Bio:
     %p=@user.bio
 .row
+  .col
+    -if user_signed_in? && current_user != @user
+      =link_to "Message", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @user.id}), method: :post, :class => "btn btn-success btn-sm"
+      -if Follow.where(user_id: current_user.id, following_id: @user.id).blank?
+        =link_to "Follow", follows_path(user_id: current_user.id, following_id: @user.id), method: :post, class: "btn btn-primary btn-sm"
+      -else
+        =link_to "Unfollow", follows_path(user_id: current_user.id, following_id: @user.id), method: :delete, class: "btn btn-primary btn-sm"
+.row
   - @bags.each do |bag|
-    .col-3.my-3
+    .col-6.col-sm-3.my-3
       .card
         .card-header
           =bag.name
@@ -21,7 +23,7 @@
           = render "shared/display_bag_picture_as_link", bag: bag, path: bag_path(bag)
 .row
   - @discs.each do |disc|
-    .col-3.my-3
+    .col-4.col-sm-3.my-3
       = render "shared/display_disc_picture_as_link", disc: disc, path: disc
   -if @discs.blank?
     %h5.m-3 This user hasn't added anything to their collection yet.
