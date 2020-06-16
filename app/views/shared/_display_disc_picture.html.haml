@@ -1,0 +1,5 @@
+-if disc.picture.attached?
+  = image_tag(disc.picture, class: "img-fluid")
+-else
+  -dummy_image_link = "https://via.placeholder.com/500/808080/FFFFFF" + "?text=#{disc.plastic_type}+#{disc.model}"
+  = image_tag(dummy_image_link, class: "img-fluid")
