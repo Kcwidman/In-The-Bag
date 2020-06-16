@@ -1,27 +1,29 @@
 =form_with(model: [@conversation, @message]) do |form|
-  .row.col.mx-0.px-0
-    = render "conversation_sidebar", conversation: @conversation
-    .message-area
-      -if @messages.blank?
-        %p.my-3 Say something and you'll see your messages here
-      -@messages.each do |m|
-        -if current_user != m.user
-          .row.mx-4
-            .col
-              %strong=m.user.name
-          .row.mx-4
-            .col
-              =m.body
-        -else
-          .row.mx-4
-            .col.text-right
-              %strong=m.user.name
-          .row.mx-4
-            .col.text-right
-              =m.body
-      .row.m-4.mx-0.px-0
-        .col-10
-          .form-group.message-form
-            = form.text_area :body, :class => "form-control", :placeholder => "Message #{@conversation.other_party_name(current_user.id)}..."
-        .col-2
-          = form.submit "Send", :class => "btn btn-success"
+  .row.no-gutters
+    .col-3.col-sm-3
+      = render "conversation_sidebar", conversation: @conversation
+    .col-9.col-sm-9
+      .message-area
+        -if @messages.blank?
+          %p Say something and you'll see your messages here
+        -@messages.each do |m|
+          -if current_user != m.user
+            .row.mx-1
+              .col
+                %strong=m.user.name
+            .row.mx-1
+              .col
+                =m.body
+          -else
+            .row.mx-1
+              .col.text-right
+                %strong=m.user.name
+            .row.mx-1
+              .col.text-right
+                =m.body
+        .row.mx-1.mt-4
+          .col-12.col-sm-10
+            .form-group.message-form
+              = form.text_area :body, :class => "form-control", :placeholder => "Message #{@conversation.other_party_name(current_user.id)}..."
+          .col
+            = form.submit "Send", :class => "btn btn-success"

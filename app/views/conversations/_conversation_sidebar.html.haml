@@ -5,7 +5,7 @@
     -@conversations.each do |c|
       .list-group-flush
         .list-group-item.sideNav.d-flex.justify-content-between.align-items-center
-          =link_to c.other_party_name(current_user.id), conversation_path(c), class: "text-dark"
+          =link_to c.other_party_name(current_user.id), conversation_path(c), class: "text-dark ml-0"
           .badge-pill.badge-secondary.py-0.px-1
             -unread_count = Message.where(conversation_id: c.id, read: false).where.not(user_id: current_user.id).count
             =unread_count unless unread_count == 0
