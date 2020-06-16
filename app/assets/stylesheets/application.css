@@ -16,8 +16,14 @@
 
 .sideNavBox {
   min-height: 92.4vh;
+  width: 25%;
   height: 100%;
   background-color: #90aeee;
+}
+
+.message-area {
+  width: 75%;
+  background-color: #c5c4cc;
 }
 
 .list-group-item.sideNav {
@@ -25,6 +31,19 @@
   background-color: #90aeee;
 }
 
+.form-group.message-form {
+  background-color: #0275d8;
+}
+
 a:link{
   text-decoration: none; 
 }
+
+.dropdown-menu{
+  background-color: #0275d8;
+}
+
+.dropdown-item:hover{
+  background-color: #0275d8;
+}
+

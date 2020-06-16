@@ -13,12 +13,12 @@
         =@offer.description
     =render "shared/display_flight_chart", disc: @offer.disc
     .row.col.mt-3
-      =link_to "Back", :back, :class => "btn btn-lg btn-success mr-2"
-      -if current_user.id != @offer.user_id
-        =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-lg btn-success mx-2"
-      -else
-        =link_to "Delete Offer", offer_path(@offer), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-lg btn-danger mx-2"
+      =link_to "Back", :back, :class => "btn btn-success d-flex justify-content-center d-md-table mx-auto"
+      -if user_signed_in? && current_user.id != @offer.user_id
+        =link_to "Message Seller", conversations_path(:conversation => {:sender_id => current_user.id, :receiver_id => @offer.user_id}), method: :post, :class => "btn btn-success d-flex justify-content-center d-md-table mx-auto"
+      -elsif current_user == @offer.user
+        =link_to "Delete Offer", offer_path(@offer), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger d-flex justify-content-center d-md-table mx-auto"
         -if @offer.public? == true
-          =link_to "Make private", offer_path(@offer, public: false), method: :patch, class: "btn btn-primary btn-lg mx-2"
+          =link_to "Make private", offer_path(@offer, public: false), method: :patch, class: "btn btn-primary d-flex justify-content-center d-md-table mx-auto"
         -else
-          =link_to "Make public", offer_path(@offer, public: true), method: :patch, class: "btn btn-primary btn-lg mx-2"
+          =link_to "Make public", offer_path(@offer, public: true), method: :patch, class: "btn btn-primary d-flex justify-content-center d-md-table mx-auto"

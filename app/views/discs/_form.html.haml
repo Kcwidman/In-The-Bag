@@ -13,41 +13,49 @@
         .col-4
           .form-group
             = form.text_field :brand, :class => "form-control", :placeholder => "brand"
-        .col-4.mt-4
+      .row
+        .col-4.offset-4.mb-2
+          Flight numbers:
+      .row
+        .col-4
           .form-group
             = form.text_field :nickname, :class => "form-control", :placeholder => "nickname" 
-        .col-2.pr-0
-          Flight numbers:
+        .col-2
           .form-group
             = form.text_field :speed, :class => "form-control", :placeholder => "speed"
-        .col-2.mt-4
+        .col-2
           .form-group
             = form.text_field :glide, :class => "form-control", :placeholder => "glide"
-        .col-2.mt-4
+        .col-2
           .form-group
             = form.text_field :turn, :class => "form-control", :placeholder => "turn"
-        .col-2.mt-4
+        .col-2
           .form-group
             = form.text_field :fade, :class => "form-control", :placeholder => "fade"
+      .row
         .col-2
           Weight:
-          .form-group
-            = form.text_field :weight, :class => "form-control", :placeholder => "(grams)"
         .col-2
+          Condition:
+        .col-4
           Color:
-          .form-group
-            = form.select :color, Disc::COLORS, {}, :class => "form-control"
+        .col-4
+          Flight Chart ID:
+          =link_to "?", flight_chart_explanation_discs_path, class: "btn btn-sm btn-primary btn-small mb-2 p-0"
+      .row
         .col-2
-          Condition: 
+          .form-group
+            = form.text_field :weight, :class => "form-control", :placeholder => "(g)"
+        .col-2 
           .form-group
             = form.select :condition, (1..10), {}, class: "form-control"
-        .col-3
-          Flight Chart ID:
+        .col-4
+          .form-group
+            = form.select :color, Disc::COLORS, {}, :class => "form-control"
+        .col-4
           .form-group
             =form.text_field :flight_chart_id, class: "form-control"
-        .col-3.mt-4
-          =link_to "What is this?", flight_chart_explanation_discs_path, class: "btn btn-primary btn-small"
-    .col-3
+    .col-3.my-auto
       -if @disc.picture.attached?
         =render "shared/display_disc_picture", disc: @disc
   .row
@@ -56,5 +64,6 @@
       .form-group
         = form.text_area :description, :class => "form-control", :placeholder => "What's special about this disc?"
     .col-3.mt-5
-      = link_to 'Cancel', discs_path, :class => "btn btn-danger mr-4"
-      = form.submit :Finish, :class => "btn btn-success m-auto"
+      .row
+        = link_to 'Cancel', discs_path, :class => "btn btn-danger mx-auto"
+        = form.submit :Finish, :class => "btn btn-success mx-auto"

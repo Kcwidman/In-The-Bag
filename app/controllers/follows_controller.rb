@@ -1,4 +1,6 @@
 class FollowsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     Follow.create(user_id: params[:user_id], following_id: params[:following_id])
     #update follower count

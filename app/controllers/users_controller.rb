@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user_owner!, only: [:edit, :update, :destroy]
 
   def index
-    @followers = current_user.followers.last(5)
+    if user_signed_in?
+      @followers = current_user.followers.last(5)
+      @following = current_user.followings.last(5)
+    end
     @most_followed = User.all.order("follower_count DESC").first(5)
-    @following = current_user.followings.last(5)
     @q_empty = (params[:q]&.permit!&.to_h || {}).all? { |key, value| value.blank? }
     @q = User.all.ransack(params[:q])
     @results = @q.result

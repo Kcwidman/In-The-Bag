@@ -1,4 +1,5 @@
 class SlotsController < ApplicationController
+  before_action :authenticate_user!
   def edit
     @bag = Bag.find(params[:bag_id])
     @existing_slots = @bag.slots.to_a

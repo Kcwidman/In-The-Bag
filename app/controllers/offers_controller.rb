@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
   before_action :require_offer_owner!, only: [:edit, :update, :destroy]
   before_action :check_disc_attributes, only: [:new]
@@ -75,7 +76,7 @@ class OffersController < ApplicationController
     attributes << "condition" if @disc.condition.blank?
     attributes = attributes.join(", ").to_s
     if attributes.present?
-      redirect_to({action: "select"}, alert: "Please update your disc with the following information before you trade it: #{attributes}")
+      redirect_to edit_disc_path(@disc), alert: "Please update your disc with the following information before you trade it: #{attributes}"
     end
   end
 

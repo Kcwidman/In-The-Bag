@@ -41,16 +41,16 @@
               -if user_signed_in?
                 -@conversations = Conversation.where(sender_id: current_user.id).or(Conversation.where(receiver_id: current_user.id)).to_a
                 -total_unread_count = Message.where(read: false, conversation: @conversations).where.not(user_id: current_user.id).count
-                .badge-pill.badge-secondary
+                .badge-pill.badge-secondary.py-0.px-1
                   =total_unread_count unless total_unread_count == 0
-            %li.nav-item.my-2
-              -if current_user
+                  
+            -if user_signed_in?
+              %li.nav-item.my-2
                 =link_to "Account", edit_user_path(current_user), :class => "navbar text-light"
-              -else
-                =link_to "Account", "", :class => "navbar text-light"
-            %li.nav-item.my-2
-              = link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar text-light"
-      .text-danger.text-center
+              %li.nav-item.my-2
+                = link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar text-light"
+
+      .alert-secondary.text-center
         - flash.each do |name, msg|
           %strong= content_tag :div, msg, class: name
       = yield

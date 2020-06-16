@@ -1,4 +1,5 @@
 class BagsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
   before_action :require_bag_owner!, only: [:edit, :update, :destroy]
 

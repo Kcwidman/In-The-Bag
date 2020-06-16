@@ -1,8 +1,9 @@
 .row.mt-3
   .col-5
     %h1 My Bags
-  .col-2.my-auto
-    = link_to 'Create Bag', new_bag_path, :class => "btn btn-lg btn-success"
+  .col
+    .row.mx-0
+      = link_to 'Create Bag', new_bag_path, :class => "btn btn-lg btn-success ml-auto"
 .row
   - @bags.each do |bag|
     .col-3.my-3
@@ -10,6 +11,6 @@
         .card-header
           =bag.name
         .card-image-top.text-center
-          = link_to image_tag('default_bag.png', size: "250x250"), bag_path(bag)
+          = render "shared/display_bag_picture_as_link", bag: bag, path: bag_path(bag)
   -if @bags.blank?
     %h5.m-3 You don't have any bags yet

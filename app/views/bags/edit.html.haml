@@ -1,13 +1,16 @@
 = form_for @bag do |form|
   .row.mt-4
     .col-4
-    .col-3
+    .col-4
       =form.text_field :name, :class => "form-control"
-      =image_tag('default_bag.png', size: "300x300")
-    .col-3
-      = link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
-      = link_to "Add or remove discs", edit_bag_slots_path(@bag), :class => "btn btn-primary mt-3"
-      = form.submit "Save changes", :class => "btn btn-success mt-3"
+      = render "shared/display_bag_picture", bag: @bag
+    .col-4
+      .row
+        = link_to 'Delete bag', bag_path(@bag), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger"
+      .row
+        = link_to "Add/remove discs", edit_bag_slots_path(@bag), :class => "btn btn-primary mt-3"
+      .row
+        = form.submit "Save changes", :class => "btn btn-success mt-3"
   .row.mt-4#bag-list
     =form.fields_for :slots, @bag.slots.order("position ASC NULLS LAST") do |slot_form|
       .col-3
