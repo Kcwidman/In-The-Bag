@@ -1,9 +1,8 @@
 TO DO:
-Protect from integer overflow
-Set up errbit
 Encrypt live version of the site
 
 FIXES:
+Protect from integer overflow
 
 
 POLISH:
@@ -15,6 +14,7 @@ Sort by disc class in discs index
 Make new disc mold and brand searchable dropdowns based on PDGA approved discs
 Scrape disc_id's from inbounds' site to automatically display flight charts
 Compress pictures to smaller size for faster load times and reduced storage space
+Better scrolling through long conversations
 
 ADDITIONAL FEATURES:
 Connect offers and messages
