@@ -2,11 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations"
   }
-  resources :discs do
-    collection do
-        get :flight_chart_explanation
-    end
-  end
+  resources :discs
   resources :bags do
     resource :slots, only: [:edit, :update]
   end

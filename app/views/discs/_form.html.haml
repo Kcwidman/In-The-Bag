@@ -45,11 +45,6 @@
           Color:
           .form-group
             = form.select :color, Disc::COLORS, {}, :class => "form-control"
-        .col-6.col-sm-4
-          Flight Chart ID:
-          =link_to "?", flight_chart_explanation_discs_path, class: "btn btn-sm btn-primary btn-small p-0"
-          .form-group
-            =form.text_field :flight_chart_id, class: "form-control"
     .col-3.mb-auto
       -if @disc.picture.attached?
         =render "shared/display_disc_picture", disc: @disc
