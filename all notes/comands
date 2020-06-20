@@ -17,7 +17,7 @@ Rebasing steps
 
 Deploy changes
   0. Go to shipit and deploy the most recent commit
-  1. If DB migrations were added, go into rancher/app/web then open a shell by clicking the menu tab on the running service
+  1. If DB migrations were added, go into rancher/app/web/containers then open a shell by clicking the menu tab on the running service
   2. run rake db:migrate in the shell
 
 HOW TO CREATE A DATABASE

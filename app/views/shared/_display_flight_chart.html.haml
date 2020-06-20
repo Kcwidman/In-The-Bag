@@ -3,6 +3,8 @@
     Flight Chart
   .card-image-top.text-center
     -chart = Flightchart.where(mold: disc.model).first
+    -if chart.blank?
+      -chart = Flightchart.where("mold like ?", "%#{disc.model}%").first
     -if chart.present?
       -chart_id = chart.chart_id
       -image_link = "http://www.inboundsdiscgolf.com/content/WebCharts/" + chart_id + ".png"
@@ -11,4 +13,6 @@
       -image_link = "https://via.placeholder.com/300x400/FFFFFF/FFFFFF"
     =image_tag(image_link, class: "img-fluid")
     .text-muted
+      %p
+        =("#{chart.mold}")
       %em Powered by Inbounds Disc Golf
