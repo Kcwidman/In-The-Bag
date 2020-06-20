@@ -2,10 +2,13 @@
   .card-header.text-center
     Flight Chart
   .card-image-top.text-center
-    -if disc.flight_chart_id.blank?
-      %strong.text-center No flight chart found
-      .row
-        -image_link = "https://via.placeholder.com/300x400/FFFFFF/FFFFFF"
+    -chart = Flightchart.where(mold: disc.model).first
+    -if chart.present?
+      -chart_id = chart.chart_id
+      -image_link = "http://www.inboundsdiscgolf.com/content/WebCharts/" + chart_id + ".png"
     -else
-      -image_link = "http://www.inboundsdiscgolf.com/content/WebCharts/" + disc.flight_chart_id.to_s + ".png"
+      %strong Flight chart not found. Double check the mold name of the disc.
+      -image_link = "https://via.placeholder.com/300x400/FFFFFF/FFFFFF"
     =image_tag(image_link, class: "img-fluid")
+    .text-muted
+      %em Powered by Inbounds Disc Golf

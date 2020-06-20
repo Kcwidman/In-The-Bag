@@ -1,0 +1,2 @@
+class Flightchart < ApplicationRecord
+end
