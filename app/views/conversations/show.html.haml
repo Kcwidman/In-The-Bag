@@ -6,9 +6,9 @@
     .col
       .message-area
         -if params[:collapsed]
-          =link_to ">", conversation_path(@conversation), class: "btn btn-sm btn-secondary btn-small p-0"
+          =link_to ">", conversation_path(@conversation), class: "btn btn-sm btn-primary btn-small p-0"
         -else
-          =link_to "<", conversation_path(@conversation, collapsed: true), class: "btn btn-sm btn-secondary btn-small p-0"
+          =link_to "<", conversation_path(@conversation, collapsed: true), class: "btn btn-sm btn-primary btn-small p-0"
         -if @messages.blank?
           %p.ml-3 Say something and you'll see your messages here
         -@messages.each do |m|

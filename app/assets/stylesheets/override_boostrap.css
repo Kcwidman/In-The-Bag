@@ -1,0 +1,17 @@
+
+ .sideNavBox {
+  min-height: 92.4vh;
+  height: 100%;
+  background-color: #5d7099;
+}
+
+.message-area {
+  min-height: 92.4vh;
+  height: 100%;
+  background-color: #a8a7ad;
+}
+
+.list-group-item.sideNav {
+  display: inline-flex;
+  background-color: #5d7099;
+}

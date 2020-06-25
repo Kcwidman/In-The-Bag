@@ -12,38 +12,7 @@
  *
  *= require bootstrap/dist/css/bootstrap
  *= require_self
+ *= require bootstrap_theme
+ *= require override_boostrap
+ *= require bootstrap
  */
-
-.sideNavBox {
-  min-height: 92.4vh;
-  height: 100%;
-  background-color: #90aeee;
-}
-
-.message-area {
-  min-height: 92.4vh;
-  height: 100%;
-  background-color: #c5c4cc;
-}
-
-.list-group-item.sideNav {
-  display: inline-flex;
-  background-color: #90aeee;
-}
-
-.form-group.message-form {
-  background-color: #0275d8;
-}
-
-a:link{
-  text-decoration: none; 
-}
-
-.dropdown-menu{
-  background-color: #0275d8;
-}
-
-.dropdown-item:hover{
-  background-color: #0275d8;
-}
-
