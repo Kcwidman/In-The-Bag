@@ -12,7 +12,8 @@
       %strong Flight chart not found. Double check the mold name of the disc.
       -image_link = "https://via.placeholder.com/300x400/FFFFFF/FFFFFF"
     =image_tag(image_link, class: "img-fluid")
-    .text-muted
-      %p
-        =("#{chart.mold}")
-      %em Powered by Inbounds Disc Golf
+    -if chart.present?
+      .text-muted
+        %p
+          =("#{chart.mold}")
+        %em Powered by Inbounds Disc Golf
